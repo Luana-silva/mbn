@@ -1,0 +1,302 @@
+<main class="main">
+  <section class="bg-top">
+  <div class="container">
+    <div class="main__top">
+      <div class="row">
+        <div class="col-md-8 col-xl-4 col-sm-4 col-xs-6">
+          <div class="logo">
+            <a [routerLink]="['/']" class="logo__link">
+              <img class="logo__image img-responsive" src="assets/images/icones/logo-v1.png" alt="Logo My Building net">
+            </a>
+          </div>
+        </div>
+
+       <div class="col-md-4 col-xl-4 col-sm-4 col-xs-6">
+        <nav class="nav">
+          <ul class="menu" style="padding-top: 10px;">
+           <li class="menu__item" *ngIf="logged()">
+              <div class="drop" style="position: relative; cursor: pointer;" (click)="dropdown.classList.toggle('active')">
+                <a class="menu__link menu__user">Olá {{ getName() }}</a>
+               <img class="avatar" src="https://ctvalleybrewing.com/wp-content/uploads/2017/04/avatar-placeholder.png" width="50px" height="50px" style="border: 1px solid gray; margin-left: 15px;">
+              </div>
+
+              <ul class="dropdown" #dropdown>
+                <li class="dropdown__item">
+                  <a  [routerLink]="['/account']" style="cursor: pointer;">Minha conta</a>
+                </li>
+                <li class="dropdown__item">
+                  <a  [routerLink]="['/calendar']" style="cursor: pointer;">Calendário</a>
+                </li>
+                <li class="dropdown__item">
+                  <a  [routerLink]="['/adverts']" style="cursor: pointer;">Anúncios</a>
+                </li>
+                 <li class="dropdown__item">
+                   <a (click)="logout()" style="cursor: pointer;">Sair</a>
+                 </li>
+              </ul>
+            </li>
+
+             <li class="menu__item" *ngIf="!logged()">
+              <a class="menu__link" [routerLink]="['/cadastre']">Criar conta</a>
+            </li>
+            <li class="menu__item" *ngIf="!logged()">
+              <a class="menu__link btn btn-round btn-blue" [routerLink]="['/login']">Entrar</a>
+            </li>
+          </ul>
+        </nav>
+       </div>
+      </div>
+    </div>
+
+    <div class="search">
+      <div class="row">
+        <div class="col-md-12 col-xs-12 col-md-offset-0 col-xs-offset-0">
+          <div class="search__container">
+            <div class="search__bar">
+              <input class="search__input" placeholder="Encontrar no MyBuildingNet" (keyup)="searchTerm$.next($event.target.value)">
+              <img class="img-search" src="assets/images/icones/busca.svg">
+            </div>
+            <a (click)="teste()"><img class="img-search" src="assets/images/icones/settings.svg"></a>
+          </div>
+
+
+        <ul *ngIf="results" class="list-group list-group--opacity">
+          <li *ngFor="let result of results.data | slice:0:6" class="list-group-item list-group--opacity">
+              <a [routerLink]="['/catalogue']">{{ result }}</a>
+          </li>
+      </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="section section-fixed-height" style="position: relative; top: -140px">
+  <div class="container">
+    <div class="section__header">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0">
+                <h2 class="title-section">Em destaque</h2>
+            </div>
+          </div>
+    </div>
+
+      <div class="section__body">
+        <div class="row">
+          <div class="col-md-12 col-md-offset-0">
+            <div class="highlights-container">
+                <div class="card-highlights" *ngFor="let service of servicesFeatured" (click)="teste()">
+                    <figure class="card-highlights__figure">
+                      <img class="img-responsive card-highlights__figure--image" [src]="getImageServicesFeatured(service.id, service.gallery[0].id)">
+                      <figcaption class="card-highlights__caption">{{ service.name }}</figcaption>
+                    </figure>
+                </div>
+           </div>
+         </div>
+      </div>
+    </div>
+
+    <div class="section__footer section__footer--highlights">
+
+      <div class="form-actions">
+          <div class="text-right">
+            <a class="btn-link" [routerLink]="['/catalogue']">
+              Ver mais
+              <button type="submit" class="btn-radius">+</button>
+            </a>
+          </div>
+      </div>
+   </div>
+  </div>
+</section>
+
+<section class="section section--gray" style="position: relative; top: -100px">
+  <div class="container">
+    <div class="section__header">
+      <div class="row">
+        <div class="col-md-12 col-md-offset-0">
+            <h2 class="title-section">Soluções</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="section__body">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1">
+            <div class="row section-highlights">
+                <div class="col-md-3 nopadding" *ngFor="let solution of solutions">
+                  <div class="card">
+                      <div class="card__image">
+                        <img class="img-responsive" [src]="getImageSolution(solution.id)">
+                      </div>
+
+                      <div class="card__footer">
+                          <i class="fas fa-star icon-green"></i>
+                          <i class="fas fa-star icon-green"></i>
+                          <i class="fas fa-star icon-green"></i>
+                          <i class="fas fa-star icon-green"></i>
+                          <i class="fas fa-star icon-green"></i>
+                      </div>
+
+                      <div class="card__name">
+                        <span class="card__name__text text-center">{{ solution.name }}</span>
+                      </div>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+       </div>
+     </div>
+
+     <div class="section__footer">
+
+        <div class="form-actions">
+            <div class="text-center">
+              <button [routerLink]="['/solutions']" type="submit" class="btn btn-round btn-primary btn-auto btn-center" style="line-height: 1;">Todas as soluções</button>
+            </div>
+        </div>
+     </div>
+    </div>
+</section>
+
+<section class="section section--gray">
+    <div class="container">
+      <div class="section__header">
+          <div class="row">
+              <div class="col-md-12 col-md-offset-0">
+                  <h2 class="title-section">Depoimentos recentes</h2>
+              </div>
+            </div>
+      </div>
+      <div class="section__body">
+        <div class="row">
+          <div class="col-md-12 col-md-offset-0">
+              <ngu-carousel #myCarousel [inputs]="carouselTile" [dataSource]="ratingsFeatured">
+                  <ngu-tile *nguCarouselDef="let ratingsFeatured; let i = index">
+                       <div class="testimony">
+                          <div class="testimony__profile">
+                            <figure class="testimony__figure">
+                                <img class="avatar" src="https://ctvalleybrewing.com/wp-content/uploads/2017/04/avatar-placeholder.png" width="90px" [alt]="ratingsFeatured.image">
+
+                               <figcaption class="testimony__caption">
+                                  <span class="testimony__text testimony__name">{{ ratingsFeatured.messages[0].nameUser }}</span>
+                                  <span class="testimony__text testimony__date">10.11.18</span>
+                               </figcaption>
+                            </figure>
+                          </div>
+
+                          <div class="testimony__info">
+                            <span class="testimony__project">{{ ratingsFeatured.info.title }}</span>
+
+                            <div class="testimony__rating">
+                                <i class="fas fa-star icon-green"></i>
+                                <i class="fas fa-star icon-green"></i>
+                                <i class="fas fa-star icon-green"></i>
+                                <i class="fas fa-star icon-green"></i>
+                                <i class="fas fa-star icon-green"></i>
+                            </div>
+
+                            <p class="testimony__quote">
+                              "{{ ratingsFeatured.messages[0].message }}"
+                            </p>
+
+                          </div>
+                       </div>
+                  </ngu-tile>
+                  <button  #arrowPrev NguCarouselPrev style="display: none;" *ngIf="!myCarousel.isFirst" class="leftRs arrow arrow-circle arrow-circle-left"><i class="fas fa-angle-left fa-3x"></i></button>
+                  <button  #arrowNext NguCarouselNext style="display: none;" class="rightRs arrow arrow-circle arrow-circle-right"><i class="fas fa-angle-right fa-3x"></i></button>
+
+
+
+                  <ul class="dots" NguCarouselPoint>
+                      <li class="dots__item" *ngFor="let i of myCarousel.pointNumbers; let i = index" [class.active]="i==myCarousel.activePoint" (click)="myCarousel.moveTo(i)"
+                        [style.background]="'url(' + ratingsFeatured[i] + ')'"></li>
+                    </ul>
+
+               </ngu-carousel>
+
+               <button class="leftRs arrow arrow-circle arrow-circle-left" (click)="handleArrowPrev()"><i class="fas fa-angle-left fa-3x"></i></button>
+               <button class="rightRs arrow arrow-circle arrow-circle-right" (click)="handleArrowNext()"><i class="fas fa-angle-right fa-3x"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+      <div class="container">
+        <div class="section__header">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-0">
+                    <h2 class="title-section">Trabalhos em destaque</h2>
+                </div>
+              </div>
+        </div>
+        <div class="section__body">
+          <div class="row">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="row jobs">
+                  <div class="img-grid" *ngFor="let service of servicesFeaturedByAdmin">
+                    <img class="img-responsive" [src]="getImageServicesFeatured(service.id, service.gallery[0].id)">
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--gray">
+        <div class="container">
+          <div class="section__header">
+              <div class="row">
+                  <div class="col-md-12 col-md-offset-0">
+                      <h2 class="title-section">Últimos artigos</h2>
+                  </div>
+                </div>
+          </div>
+          <div class="section__body">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 col-xs-offset-0 col-xs-12">
+                    <div class="col-md-4 col-xs-6 col-xl-12 nopadding-sm" *ngFor="let post of posts">
+                        <div class="card-article">
+                          <img class="img-responsive" src="http://dev.mangobits.net/MBNWs/rs/category/categoryImage/7ebf8d64-8e56-4473-ab06-49d5845d4f0e/main" alt="">
+
+                          <p class="article__desc">{{ post.title.rendered }}</p>
+
+                        <!--  <p>{{ post._links['wp:featuredmedia'][0].href[0] }}</p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-sac">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
+                  <div class="col-md-8">
+                      <div class="">
+                        <h3 class="title-large">Precisa de ajuda?</h3>
+
+                        <p class="text-support">Estamos aqui para ajudá-lo</p>
+                        <p class="text-support">Entre em contato por telefone, email ou redes sociais</p>
+                      </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <div class="support">
+                        <span class="icon-support">
+                            <img src="assets/images/icones/customer-service.svg" alt="customer service">
+                        </span>
+                        <button (click)="teste()" class="btn btn-round btn-support">Suporte</button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </section>

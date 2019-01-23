@@ -1,0 +1,107 @@
+/* Menu */
+
+.section__menu {
+  background: #efefef;
+  border-radius: 25px;
+  padding: 8px;
+}
+
+.menu-ad {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto !important;
+  display: flex;
+  justify-content: space-around;
+}
+
+.menu-ad__item {
+  width: 33%;
+  text-align: center;
+}
+
+.menu-ad__link {
+  font-size: 2rem;
+  color: #949291;
+  font-weight: bold;
+  padding: 7px 0;
+  cursor: pointer;
+}
+
+.menu-ad__link:hover {
+  text-decoration: none;
+  color: #39b5b1;
+  border-bottom: 2px solid #39b5b1;
+}
+
+.menu-ad__link.active {
+  color: #39b5b1;
+  border-bottom: 2px solid #39b5b1;
+}
+
+.account {
+  padding-bottom: 30px;
+}
+
+.card-avatar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.document__avatar {
+  margin-right: 20px;
+}
+
+.label-document {
+  color: #3e85bd;
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.label-txt,
+.label-link {
+  font-size: 1.6rem;
+  color: #707070;
+  font-weight: 300;
+  display: block;
+}
+
+.label-link {
+  font-weight: bolder;
+}
+
+.input-add {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zipcode {
+  display: flex;
+}
+
+.skills {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skills__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-textarea {
+  resize: none;
+  height: 250px;
+}
+
+input[type="file"] {
+  display: none !important;
+}
+
+.ng2-imgcrop input[type="file"] {
+  display: none !important;
+}

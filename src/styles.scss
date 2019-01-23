@@ -1,0 +1,331 @@
+/* You can add global styles to this file, and also import other style files */
+
+ul {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none;
+}
+
+.drop {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.dropdown {
+    background: #FFF;
+    min-width: 80%;
+    padding: 20px !important;
+    position: absolute;
+    display: none;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    list-style: none;
+    margin: 0;
+    margin-top: 8px;
+    z-index: 999;
+}
+
+.dropdown.active {
+    display: block;
+}
+
+.dropdown:after {
+    content: '';
+    margin-right: auto;
+    margin-left: auto;
+    border-width: 15px;
+    border-style: solid;
+    border-color: transparent transparent #FFF transparent;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: -29px;
+    display: block;
+}
+
+.menu__item {
+
+}
+.nav {
+    padding: 20px 8px;
+    .menu {
+        list-style: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .menu__item {
+        font-weight: bolder;
+        font-size: 1.8rem;
+    }
+
+    .menu__item:first-child {
+        margin-right: 25px;
+    }
+}
+
+.title-section {
+    color: #196eb0;
+    font-size: 2.5rem;
+}
+
+.btn {
+    outline: none;
+    border: none;
+    display: block;
+    width: 125px;
+    height: 37px;
+    text-align: center;
+    color: #FFF;
+    line-height: 25px;
+    font-weight: bolder;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+}
+
+.btn-round {
+    border-radius: 20px;
+}
+
+.btn-lg {
+    width: 140px;
+    height: 35px;
+    line-height: 3px;
+}
+
+.btn-auto {
+    width: auto !important;
+    padding: 10px 30px;;
+}
+
+.btn-center {
+    display: inline-block !important;
+}
+
+.btn-radius {
+    font-size: 3.5rem;
+    color: #FFF;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #3e85bd;
+    border: none;
+    margin-left: 10px;
+    outline: none;
+}
+
+
+.btn-round {
+    border-radius: 20px;
+}
+
+.btn-blue {
+    background: #2a6188;
+}
+
+.label-txt--blue {
+  color: #3e85bd;
+}
+
+.input-form {
+    height: 42px;
+    border-radius: 15px;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.tile {
+    border-radius: 15px;
+}
+
+canvas {
+  max-width: 100% !important;
+}
+/* Section */
+
+
+.section {
+    padding: 40px 0 50px 0;
+}
+
+.section--gray {
+    background: #f1f1f1;
+}
+
+.section-fixed-height {
+    min-height: 600px;
+}
+
+.section__header {
+    margin-top: 35px;
+}
+
+.section__body,
+.section__footer {
+    margin-top: 30px;
+}
+
+
+@media(max-width: 500px) {
+
+    .menu__user {
+      font-size: 1.35rem;
+    }
+
+    .nav .menu {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .nav .menu__item:first-child {
+        margin-right: 0 !important;
+    }
+
+    .section-fixed-height {
+        min-height: auto;
+    }
+
+    .section {
+        padding: 20px 20px 30px 20px !important;
+    }
+
+    .section__body,
+    .section__footer {
+        margin-top: 15px;
+    }
+
+}
+
+/* Texts */
+
+.danger {
+    color: #ff586b!important;
+}
+
+.text-muted {
+    color: #868e96;
+}
+
+.form-text {
+    display: block;
+    margin-top: .5rem;
+    font-size: 105%;
+}
+
+/* Classes do angular */
+
+.ng-touched.ng-invalid {
+    border-color: #ff586b;
+}
+
+
+/* Registro de usuário, login e forgotpassword */
+
+.info-header {
+    margin: 40px 0 40px 0;
+}
+
+.title-page {
+    color: #2c6085;
+}
+
+@media(max-width: 500px) {
+
+.title-section {
+    text-align: center;
+  }
+}
+
+.info-description {
+    color: #5080a4;
+    font-size: 2.4rem;
+    margin-top: 30px;
+}
+
+.form-account {
+    padding-bottom: 25px;
+}
+
+.input-label {
+    font-size: 1.9rem;
+    font-weight: lighter;
+}
+
+.text-link {
+    font-size: 1.9rem;
+    margin-top: 37px;
+    text-decoration: underline;
+    display: block;
+    font-weight: 600;
+}
+
+.avatar {
+    border-radius: 50%;
+}
+
+
+/* INPUT Check plugin Square skin, green */
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    &:checked ~ .checkmark {
+      border: 1px solid #324b98;
+      background: #324b98;
+      &:after {
+        display: block;
+      }
+    }
+    &[disabled] ~ .checkmark {
+      background: #c8c8c8;
+      border: none;
+      cursor: not-allowed;
+    }
+  }
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    background-color: #fff;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 8px;
+      top: 1px;
+      width: 6px;
+      height: 14px;
+      border: solid #fff;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+  &:hover input ~ .checkmark {
+    border-color: #324b98;
+  }
+}

@@ -1,0 +1,82 @@
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="info-header">
+          <h2 class="title-page">Nova conta</h2>
+
+          <p class="info-description">
+            Seja bem vindo ao <strong>MyBuildingNet</strong>,
+            para criar uma nova conta, insira seus dados:
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-account">
+          <form class="form" [formGroup]="form" (submit)="createUser()" novalidate>
+              <div class="form-body">
+                  <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-5">
+                      <fieldset class="form-group">
+                        <label class="input-label">Nome</label>
+                        <input type="text" class="form-control input-form" formControlName="name" [(ngModel)]="user.name">
+                        <small class="form-text text-muted danger"
+                            *ngIf="!form.get('name').valid && (form.get('name').dirty || form.get('name').touched)">
+                                Campo obrigatório
+                          </small>
+                      </fieldset>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-5">
+                        <fieldset class="form-group">
+                          <label class="input-label">Email</label>
+                          <input type="text" class="form-control input-form" formControlName="email" [(ngModel)]="user.email">
+                          <small class="form-text text-muted danger"
+                            *ngIf="!form.get('email').valid && (form.get('email').dirty || form.get('email').touched)">
+                                Campo obrigatório
+                          </small>
+                        </fieldset>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xl-5 col-lg-5 col-md-5">
+                          <fieldset class="form-group">
+                            <label class="input-label">Senha</label>
+                            <input type="password" class="form-control input-form" formControlName="password" [(ngModel)]="user.password">
+                            <small class="form-text text-muted danger"
+                            *ngIf="!form.get('password').valid && (form.get('password').dirty || form.get('password').touched)">
+                                Campo obrigatório
+                          </small>
+                          </fieldset>
+                        </div> 
+                      </div>
+                      <div class="row">
+                        <div class="col-xl-5 col-lg-5 col-md-5">
+                            <fieldset class="form-group">
+                              <label class="input-label">Repetir senha</label>
+                              <input type="password" class="form-control input-form" formControlName="passwordConfirmation">
+                              <small class="form-text text-muted danger"
+                                *ngIf="form.hasError('passwordsNotMatch') && (form.get('passwordConfirmation').dirty || form.get('passwordConfirmation').touched)">
+                                    Senhas não conferem
+                              </small>
+                            </fieldset>
+                          </div>
+                      </div>
+                </div>
+                
+                <div class="form-actions">
+                    <div class="text-right">
+                      <button type="submit" class="btn btn-round btn-primary btn-lg" [disabled]="!form.valid">Salvar</button>
+                    </div>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

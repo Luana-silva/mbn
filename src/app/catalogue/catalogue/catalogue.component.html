@@ -1,0 +1,162 @@
+<div class="categories">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-xs-12 col-ls-12">
+            <div class="categories__header">
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2">
+                      <div class="search__bar">
+                          <input class="search__input" placeholder="Encontrar no MyBuildingNet">
+                          <i class="fas fa-search fa-2x icon-search"></i>
+                        </div>
+                  </div>
+                </div>
+            </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-xs-12 col-lg-12">
+        <div class="feed-top">
+          <div class="row">
+
+            <div class="col-md-8 col-md-offset-2">
+              <div class="filters-selected">
+                <ul class="filters-selected__list">
+                  <li class="filters-selected__item">
+                    <a class="filters-selected__link" (click)="teste()">menor preço</a>
+                    <i class="fas fa-times fa-close-filters"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="feed-products">
+      <div class="row" style="overflow: hidden">
+        <div class="col-md-3 col-xs-12 col-lg-3">
+          <form [formGroup]="form">
+            <div class="filter-sidebar" #feedSidebar>
+
+              <div class="tab">
+                  <h3 class="title-filters">Filtrar</h3>
+              </div>
+
+
+              <div class="tab">
+                <input id="tab-one" type="checkbox" name="tabs">
+                <label for="tab-one">Preço</label>
+                <div class="tab-content">
+                  <ul class="filter-list">
+                   <li (click)="filter()">
+                     <label class="checkbox-container">
+                        <span for="maior" style="font-size: 1.6rem;
+    margin-left: 18px;">Maior preço</span>
+                        <input type="checkbox"  formControlName="maior">
+                        <span class="checkmark"></span>
+                      </label>
+                   </li>
+                   <li (click)="filter()">
+                     <label class="checkbox-container">
+                       <span for="menor" style="font-size: 1.6rem;
+    margin-left: 18px;">Menor preço</span>
+                        <input type="checkbox" checked="checked" formControlName="menor">
+                        <span class="checkmark"></span>
+                      </label>
+                   </li>
+                 </ul>
+                  <!-- <ul class="filter-list">
+                    <li class="filter-item" (click)="filter()">
+                      <input type="checkbox" id="maior" formControlName="maior">
+                      <span for="maior">Maior</span>
+                    </li>
+                    <li class="filter-item" (click)="filter()">
+                      <input type="checkbox" formControlName="menor">
+                      <span>Menor</span>
+                    </li> -
+                  </ul> -->
+                </div>
+              </div>
+
+              <div class="tab">
+                <input id="tab-two" type="checkbox" name="tabs">
+                <label for="tab-two">Localização</label>
+                <div class="tab-content">
+                  <p>Em breve</p>
+                </div>
+              </div>
+
+              <div class="tab">
+                <input id="tab-three" type="checkbox" name="tabs">
+                <label for="tab-three">Abrangência</label>
+                <div class="tab-content">
+                  <p>Em breve</p>
+                </div>
+              </div>
+
+              <div class="tab">
+                <input id="tab-four" type="checkbox" name="tabs">
+                <label for="tab-four">Idioma</label>
+                <div class="tab-content">
+                  <p>Em breve</p>
+                </div>
+              </div>
+
+              <div class="tab">
+                <input id="tab-five" type="checkbox" name="tabs">
+                <label for="tab-five">Preferidos</label>
+                <div class="tab-content">
+                  <p>Em breve</p>
+                </div>
+              </div>
+
+              <div class="tab">
+                <input id="tab-six" type="checkbox" name="tabs">
+                <label for="tab-six">Prazo</label>
+                <div class="tab-content">
+                  <p>Em breve</p>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+        <div class="col-md-9 col-xs-12">
+          <div class="catalogue">
+            <div *ngFor="let service of serviceList" class="col-lg-4 col-md-4 col-xs-6 nopadding">
+              <!-- <app-product [product]="product" [idUser]="idUser" (favorProduct)="onfavoriteProduct(product)"></app-product> -->
+              <div class="card">
+                <div class="card__image">
+                  <img class="img-responsive" [src]="getImageServicesFeatured(service.id, service.gallery[0].id)" style="height: 240px;">
+                </div>
+
+                <div class="card__footer">
+                    <i class="fas fa-star icon-green"></i>
+                    <i class="fas fa-star icon-green"></i>
+                    <i class="fas fa-star icon-green"></i>
+                    <i class="fas fa-star icon-green"></i>
+                    <i class="fas fa-star icon-green"></i>
+                </div>
+
+                <div class="card__name">
+                  <span class="card__name__text text-center">{{ service.name }}</span>
+                </div>
+            </div>
+            </div>
+          </div>
+              <div class="custom-pagination" [hidden]="true">
+                  <div class="pagination-previous">
+                      <a> < Anterior </a>
+                  </div>
+                  <div class="pagination-next">
+                      <a> Próximo ></a>
+                  </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

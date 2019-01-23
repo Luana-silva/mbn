@@ -1,0 +1,154 @@
+.account {
+  padding-bottom: 30px;
+}
+
+.card-avatar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.document__avatar {
+  margin-right: 20px;
+}
+
+.label-document {
+  color: #3e85bd;
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.label-txt,
+.label-link {
+  font-size: 1.6rem;
+  color: #707070;
+  font-weight: 300;
+  display: block;
+}
+
+.label-link {
+  font-weight: bolder;
+}
+
+.label-txt--blue {
+  color: #3e85bd;
+}
+
+.input-add {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zipcode {
+  display: flex;
+}
+
+.skills {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skills__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-textarea {
+  resize: none;
+  height: 300px;
+}
+
+
+/* Switch */
+
+.switch-input {
+  display: none;
+}
+
+.switch-label {
+  position: relative;
+    display: inline-block;
+    min-width: 112px;
+    cursor: pointer;
+    font-weight: 500;
+    text-align: left;
+    /* margin: 16px; */
+    margin-top: -10px;
+    padding: 16px 0 16px 44px;
+}
+.switch-label:before, .switch-label:after {
+  content: "";
+  position: absolute;
+  margin: 0;
+  outline: 0;
+  top: 50%;
+  -ms-transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.switch-label:before {
+  left: 1px;
+  width: 34px;
+  height: 14px;
+  background-color: #9E9E9E;
+  border-radius: 8px;
+}
+.switch-label:after {
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #FAFAFA;
+  border-radius: 50%;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.098), 0 1px 5px 0 rgba(0, 0, 0, 0.084);
+}
+.switch-label .toggle--on {
+  display: none;
+}
+.switch-label .toggle--off {
+  display: inline-block;
+}
+
+.switch-label .toggle--on-2 {
+  display: none;
+}
+.switch-label .toggle--off-2 {
+  display: inline-block;
+}
+
+.switch-input:checked + .switch-label:before {
+  background-color: #9E9E9E;
+}
+.switch-input:checked + .switch-label:after {
+  background-color: #3e85bd;
+  -ms-transform: translate(80%, -50%);
+  -webkit-transform: translate(80%, -50%);
+  transform: translate(80%, -50%);
+}
+.switch-input:checked + .switch-label .toggle--on {
+  display: inline-block;
+}
+.switch-input:checked + .switch-label .toggle--off {
+  display: none;
+}
+
+.switch-input:checked + .switch-label .toggle--on-2 {
+  display: inline-block;
+}
+.switch-input:checked + .switch-label .toggle--off-2 {
+  display: none;
+}
+
+
+
+input[type="file"] {
+  display: none !important;
+}
+
+.ng2-imgcrop input[type="file"] {
+  display: none !important;
+}

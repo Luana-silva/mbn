@@ -1,0 +1,13 @@
+.logo {
+    padding: 15px;
+}
+
+.logo__image {
+    width: 180px;
+}
+
+@media(max-width: 500px) {
+    .logo__image {
+        width: 150px;
+    }
+}

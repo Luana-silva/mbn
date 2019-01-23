@@ -1,0 +1,48 @@
+<div class="account">
+  <div class="container">
+    <div class="section__header">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0">
+                <h2 class="title-section">Meus dados</h2>
+            </div>
+          </div>
+    </div>
+
+    <div class="section__body">
+       <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+             <div class="account__menu">
+               <ul class="account__opt">
+                   <li class="account__item" [routerLink]="['/personal']">
+                     <div class="account__avatar">
+                        <img class="avatar" src="https://ctvalleybrewing.com/wp-content/uploads/2017/04/avatar-placeholder.png" width="90px" height="90px" style="border: 1px solid gray;">
+                     </div>
+                     <div class="account__label">
+                       <a class="account__text">Dados Pessoais</a>
+                     </div>
+                   </li>
+
+                  <li class="account__item" [routerLink]="['/commercial']">
+                    <div class="account__avatar">
+                       <img class="avatar" src="assets/images/icones/placeholder.png" width="90px" height="90px">
+                    </div>
+                    <div class="account__label">
+                      <a class="account__text">Dados comerciais</a>
+                    </div>
+                  </li>
+
+                 <li class="account__item" [routerLink]="['/settings']">
+                   <div class="account__avatar">
+                      <img class="avatar" src="assets/images/icones/settings.png" width="90px" height="90px">
+                   </div>
+                   <div class="account__label">
+                     <a class="account__text">Configurações gerais</a>
+                   </div>
+                 </li>
+              </ul>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+</div>

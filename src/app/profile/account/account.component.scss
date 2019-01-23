@@ -1,0 +1,47 @@
+.account {
+  min-height: 80vh;
+}
+
+.account__opt {
+  margin: 0;
+  width: 100%;
+  list-style: none;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+.account__menu {
+
+}
+
+.account__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 20px 15px 20px;
+  margin-bottom: 28px;
+  cursor: pointer;
+}
+
+.account__item:not(:last-child) {
+  border-bottom: 1px solid #c1c1c1;
+}
+
+
+.account__avatar {
+ /*  margin-right: 30px; */
+}
+
+.avatar {
+
+}
+
+.account__label {
+  margin-right: 60px;
+}
+
+.account__text {
+  color: #337ab7;
+  font-size: 2rem;
+}

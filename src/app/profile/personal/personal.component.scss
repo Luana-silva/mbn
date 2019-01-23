@@ -1,0 +1,71 @@
+.account {
+  padding-bottom: 30px;
+}
+
+.card-avatar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.document__avatar {
+  margin-right: 20px;
+}
+
+.label-document {
+  color: #3e85bd;
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.label-txt,
+.label-link {
+  font-size: 1.6rem;
+  color: #707070;
+  font-weight: 300;
+  display: block;
+}
+
+.label-link {
+  font-weight: bolder;
+}
+
+.label-txt--blue {
+  color: #3e85bd;
+}
+
+.input-add {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zipcode {
+  display: flex;
+}
+
+.skills {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skills__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-textarea {
+  resize: none;
+  height: 250px;
+}
+
+input[type="file"] {
+  display: none !important;
+}
+
+.ng2-imgcrop input[type="file"] {
+  display: none !important;
+}
