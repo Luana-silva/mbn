@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { catchError } from  'rxjs/operators';
 import { from } from 'rxjs';
@@ -9,6 +10,7 @@ import { Constants } from '../../utils/constants'
 import { AuthService } from '../../shared/auth/auth.service';
 import Swall from "sweetalert2";
 import { StorageUtils } from '../../utils/storage-utils';
+import { Str } from '../../utils/transform';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +22,7 @@ export class HomeComponent implements OnInit {
 
   @ViewChild('arrowPrev') arrowPrevEl: any
   @ViewChild('arrowNext') arrowNextEl: any
+ 
 
   results: Object;
   searchTerm$ = new Subject<string>();
@@ -51,7 +54,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private homeService: HomeService,
               private storage: StorageUtils,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private router: Router) { }
 
   testimonys: any[] = [
     { name: 'Amanda Smith', image: 'https://res-4.cloudinary.com/enjoei/image/upload/c_fill,fl_lossy.progressive,h_90,w_90/cuu2fmpqd5fdabrfspxm', testimony: 'Lorem ipsum dolor amtsu...', project: 'Projeto arquitetônico  - House II'},
@@ -62,6 +66,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
+    this.loadHome();
+
+
+    
     this.getLocalization();
 
       this.homeService.search(this.searchTerm$)
@@ -160,7 +168,7 @@ logged() {
   }
 
 getName() {
-  let parseName = this.storage.getName().replace('"', '').replace('"', '')
+  let parseName = this.storage.getName().replace('"', '').replace('"', '');
   return parseName;
 }
 
@@ -173,9 +181,17 @@ loadPosts() {
     .subscribe(posts => {
       this.posts = posts;
       console.log(posts);
-
     })
 }
+
+goToCatalogue(name) {
+  const nome = Str.transformStr(name);
+  console.log(nome);
+
+  this.router.navigate(['/catalogue', nome]);
+}
+
+
 
 teste() {
   Swall('Erro', 'Funcionalidade ainda não implementada', 'error')

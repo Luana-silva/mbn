@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotfoundComponent } from './notfound/notfound.component';
 //import { ProductComponent } from './product/product.component';
 //import { FooterComponent } from './footer/footer.component';
-//import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   imports: [
@@ -13,7 +13,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     FormsModule,
     RouterModule
   ],
-  exports: [NotfoundComponent],
-  declarations: [NotfoundComponent] //[ProductComponent, FooterComponent]
+  exports: [NotfoundComponent, HeaderComponent],
+  declarations: [NotfoundComponent, HeaderComponent] //[ProductComponent, FooterComponent]
 })
 export class SharedModule { }

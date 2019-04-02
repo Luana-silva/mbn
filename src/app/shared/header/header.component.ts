@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Constants } from '../../utils/constants';
 import { StorageUtils } from '../../utils/storage-utils';
@@ -10,6 +10,8 @@ import { AuthService } from '../../shared/auth/auth.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  @ViewChild('dropdown') dropdownEl;
 
   constructor(private router: Router,
           private route: ActivatedRoute,
@@ -32,4 +34,18 @@ export class HeaderComponent implements OnInit {
 	  let parseName = this.storage.getName().replace('"', '').replace('"', '')
 	  return parseName;
 	}
+
+  goHome() {
+    if(this.dropdownEl != null || this.dropdownEl != undefined){
+      if(this.dropdownEl.nativeElement.classList.contains('active')) {
+        this.dropdownEl.nativeElement.classList.remove('active');
+        this.router.navigate(['/']);
+      } else {
+        this.router.navigate(['/']);
+      }
+    } else {
+      this.router.navigate(['/']);
+    }
+
+  }
 }

@@ -14,6 +14,8 @@ export class User {
 
 		document : string;
 
+		phone: any;
+		
 		phoneCountryCode : any;
 
 		phoneNumber : any;

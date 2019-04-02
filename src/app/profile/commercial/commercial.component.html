@@ -35,7 +35,7 @@
                         <div class="col-md-12">
                           <fieldset class="form-group">
                             <label class="label-txt">Nome comercial</label>
-                            <input type="text" class="form-control" id="txtName" formControlName="fantasyName" [(ngModel)]="company.fantasyName">
+                            <input type="text" class="form-control" id="txtName" formControlName="fantasyName" [(ngModel)]="company.fantasyName" style="margin-top: 6px;">
                             <small class="form-text text-muted danger"
                                 *ngIf="!form.get('fantasyName').valid && (form.get('fantasyName').dirty || form.get('fantasyName').touched)">
                                     Campo obrigatório
@@ -48,13 +48,13 @@
                         <div class="col-md-7">
                           <fieldset class="form-group">
                             <label class="label-txt">CNPJ</label>
-                            <input type="text" class="form-control" id="txtName" formControlName="document" [(ngModel)]="company.document" mask="0*">
+                            <input type="text" class="form-control" id="txtName" formControlName="document" [(ngModel)]="company.document" mask="00.000.000/0000-00">
                           </fieldset>
                         </div>
 
                         <div class="col-md-5">
                           <fieldset class="form-group">
-                            <label class="label-txt">Possui empresa?</label>
+                            <label class="label-txt" style="height: 22px; margin-top: 2px;">Possui empresa?</label>
                             <input type="checkbox" id="id-name--1" name="set-name" class="switch-input" formControlName="fgIsCompany" [(ngModel)]="company.info.fgIsCompany">
                             <label for="id-name--1" class="switch-label">
                               <span class="toggle--on">Sim</span>
@@ -65,34 +65,31 @@
                       </div>
 
                       <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="height: 28px; margin-top: -13px;">
                           <fieldset class="form-group">
                             <label class="label-txt">Telefone</label>
                           </fieldset>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-3">
+                       <!-- <div class="col-md-3 col-sm-3 col-xs-3">
                           <fieldset class="form-group">
                             <input type="text" class="form-control" id="txtName" formControlName="phoneCountryCode" [(ngModel)]="company.phoneCountryCode" mask="0*">
                           </fieldset>
-                        </div>
+                        </div> -->
 
-                        <div class="col-md-9 col-sm-9 col-xs-9">
-                          <fieldset class="form-group">
+                        <div class="col-md-12 col-sm-12 col-xs-12" *ngIf="NumberModel != null">
+                          <!--<fieldset class="form-group">
                             <input type="text" class="form-control" id="txtName" formControlName="phoneNumber" [(ngModel)]="company.phoneNumber" mask="0*">
-                          </fieldset>
+                          </fieldset>-->
+                          <intl-input-phone [ConfigurationOption]="configOption1" [NumberTextValue]="NumberModel" (OnNumberChange)="onNumberChage2($event)"></intl-input-phone>
                         </div>
                       </div>
                     </div>
 
                     <div class="form-body">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <fieldset class="form-group">
-                            <label class="label-txt" for="txtzipCode">CEP</label>
-                          </fieldset>
-                        </div>
+                      <div class="row" style="margin-top: 15px;">
                         <div class="col-md-8 col-sm-8 col-xs-8">
                           <fieldset class="form-group">
+                            <label class="label-txt">CEP</label>
                             <input type="text" class="form-control col-md-12" formControlName="zipCode" [(ngModel)]="company.addressInfo.zipCode" mask="0*">
                             <small class="form-text text-muted danger"
                                 *ngIf="!form.get('zipCode').valid && (form.get('zipCode').dirty || form.get('zipCode').touched)">
@@ -103,7 +100,7 @@
 
                         <div class="col-md-4 col-sm-4 col-xs-4">
                           <fieldset class="form-group">
-                            <button type="button" class="btn-link label-link" (click)="returnAddress()">
+                            <button type="button" class="btn-link label-link" style="margin-top: 22px;" (click)="returnAddress()">
                               Buscar CEP
                               <i class="fas fa-search fa-2x icon-search--gray"></i>
                             </button>
@@ -190,7 +187,7 @@
 
                         <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                           <fieldset class="form-group">
-                              <label class="label-txt">Países</label>
+                              <label class="label-txt">País</label>
                               <select  class="form-control" formControlName="country" [(ngModel)]="company.addressInfo.country">
                                   <option value="África do Sul">África do Sul</option>
                                   <option value="Albânia">Albânia</option>
@@ -392,7 +389,7 @@
             <div class="col-md-6 col-xs-12 col-sm-12" style="margin-top: 30px;">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title mb-0 label-document">Atuação</h4>
+                  <h4 class="card-title mb-0 label-document" style="margin-top: 2px;">Atuação</h4>
                 </div>
                 <div class="card-body">
                   <div class="card-block">
@@ -402,13 +399,13 @@
                       <div class="row">
                         <div class="col-md-7">
                           <fieldset class="form-group">
-                            <label class="label-txt label-txt--blue">Abrangência</label>
+                            <label class="label-txt label-txt--blue" style="height: 7px;margin-top: 60px;">Abrangência</label>
                           </fieldset>
                         </div>
 
                          <div class="col-md-5">
                           <fieldset class="form-group">
-                            <label class="label-txt">Mostrar nos anúncios</label>
+                            <label class="label-txt" style="margin-top: 64px; height: 4px;">Mostrar nos anúncios</label>
                           </fieldset>
                         </div>
                       </div>
@@ -452,7 +449,7 @@
                       <div class="row">
                         <div class="col-md-12">
                           <fieldset class="form-group">
-                            <label class="label-txt label-txt--blue">Regras de contratação</label>
+                            <label class="label-txt label-txt--blue" style="margin-top: -14px; height: 8px;">Regras de contratação</label>
                           </fieldset>
                         </div>
                       </div>
@@ -460,7 +457,7 @@
                       <div class="row">
                         <div class="col-md-12">
                           <fieldset class="form-group">
-                              <textarea class="form-control form-textarea" formControlName="hiringRules" [(ngModel)]="company.info.hiringRules">{{ company.info.hiringRules }}</textarea>
+                              <textarea class="form-control form-textarea" formControlName="hiringRules" style="margin-top: -2px;" [(ngModel)]="company.info.hiringRules">{{ company.info.hiringRules }}</textarea>
                           </fieldset>
                         </div>
                       </div>
@@ -475,7 +472,7 @@
 
      <div class="form-actions">
         <div class="text-right">
-          <button type="submit" class="btn btn-round btn-primary btn-lg" style="display: inline-block;" (click)="saveCompany()" [disabled]="!form.valid">Salvar</button>
+          <button type="submit" class="btn btn-round btn-primary btn-lg" style="display: inline-block;" (click)="saveCompany()">Salvar</button>
         </div>
     </div>
 

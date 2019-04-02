@@ -41,7 +41,7 @@
                         <div class="col-md-12">
                           <fieldset class="form-group">
                             <label class="label-txt--blue">Título</label>
-                            <input type="text"  class="form-control" formControlName="name">
+                            <input type="text"  class="form-control" formControlName="name" [(ngModel)]="service.name">
                           </fieldset>
                         </div>
                       </div>
@@ -50,7 +50,7 @@
                         <div class="col-md-12">
                           <fieldset class="form-group">
                             <label class="label-txt--blue">Descrição</label>
-                            <textarea  class="form-control form-textarea" formControlName="desc"></textarea>
+                            <textarea  class="form-control form-textarea" formControlName="desc" [(ngModel)]="service.desc"></textarea>
                           </fieldset>
                         </div>
 
@@ -63,7 +63,7 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                           <fieldset class="form-group">
                             <label class="label-txt--blue" for="txtStreet">Detalhes do serviço</label>
-                            <textarea  class="form-control form-textarea" formControlName="detail"></textarea>
+                            <textarea  class="form-control form-textarea" formControlName="detail" [(ngModel)]="service.info.detail"></textarea>
                           </fieldset>
                         </div>
                       </div>
@@ -71,14 +71,14 @@
 
                     <div class="form-body">
                       <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="height: 24px;">
                           <fieldset class="form-group">
                             <label class="label-txt--blue" for="txtzipCode">CEP</label>
                           </fieldset>
                         </div>
                         <div class="col-md-8 col-sm-8 col-xs-8">
                           <fieldset class="form-group">
-                            <input type="text" class="form-control col-md-12" formControlName="zipCode" [(ngModel)]="service.lastAddress.zipCode" mask="0*">
+                            <input type="text" class="form-control col-md-12" formControlName="zipCode" [(ngModel)]="service.addressInfo.zipCode" mask="0*">
                             <small class="form-text text-muted danger"
                                 *ngIf="!form.get('zipCode').valid && (form.get('zipCode').dirty || form.get('zipCode').touched)">
                                     Campo obrigatório
@@ -99,7 +99,7 @@
                         <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                           <fieldset class="form-group">
                             <label class="label-txt--blue" for="txtStreet">Rua</label>
-                            <input type="text" class="form-control" formControlName="street" [(ngModel)]="service.lastAddress.street">
+                            <input type="text" class="form-control" formControlName="street" [(ngModel)]="service.addressInfo.street">
                             <small class="form-text text-muted danger"
                                 *ngIf="!form.get('street').valid && (form.get('street').dirty || form.get('street').touched)">
                                     Campo obrigatório
@@ -109,7 +109,7 @@
                         <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                           <fieldset class="form-group">
                             <label class="label-txt--blue" for="txtNumber">Número</label>
-                            <input type="text" class="form-control" formControlName="number" [(ngModel)]="service.lastAddress.number" mask="0*">
+                            <input type="text" class="form-control" formControlName="number" [(ngModel)]="service.addressInfo.number" mask="0*">
                             <small class="form-text text-muted danger"
                                 *ngIf="!form.get('number').valid && (form.get('number').dirty || form.get('number').touched)">
                                     Campo obrigatório
@@ -119,13 +119,13 @@
                         <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                           <fieldset class="form-group">
                             <label class="label-txt--blue" for="txtDistrict">Bairro</label>
-                            <input type="text" class="form-control" formControlName="district" [(ngModel)]="service.lastAddress.district">
+                            <input type="text" class="form-control" formControlName="district" [(ngModel)]="service.addressInfo.district">
                           </fieldset>
                         </div>
                         <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                           <fieldset class="form-group">
                             <label class="label-txt--blue" for="txtCity">Cidade</label>
-                            <input type="text" class="form-control" formControlName="city" [(ngModel)]="service.lastAddress.city">
+                            <input type="text" class="form-control" formControlName="city" [(ngModel)]="service.addressInfo.city">
                             <small class="form-text text-muted danger"
                                 *ngIf="!form.get('city').valid && (form.get('city').dirty || form.get('city').touched)">
                                     Campo obrigatório
@@ -136,7 +136,7 @@
                         <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                           <fieldset class="form-group">
                             <label class="label-txt--blue">Estado</label>
-                            <select class="form-control" formControlName="state" [(ngModel)]="service.lastAddress.state">
+                            <select class="form-control" formControlName="state" [(ngModel)]="service.addressInfo.state">
                               <option value="AC">Acre</option>
                               <option value="AL">Alagoas</option>
                               <option value="AP">Amapá</option>
@@ -175,8 +175,8 @@
 
                         <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                           <fieldset class="form-group">
-                              <label class="label-txt--blue">Países</label>
-                              <select  class="form-control" formControlName="country" [(ngModel)]="service.lastAddress.country">
+                              <label class="label-txt--blue">País</label>
+                              <select  class="form-control" formControlName="country" [(ngModel)]="service.addressInfo.country">
                                   <option value="África do Sul">África do Sul</option>
                                   <option value="Albânia">Albânia</option>
                                   <option value="Alemanha">Alemanha</option>
@@ -363,7 +363,7 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                           <fieldset class="form-group">
                             <label class="label-txt--blue" for="txtComplement">Complemento</label>
-                            <input type="text" class="form-control" formControlName="complement" [(ngModel)]="service.lastAddress.complement">
+                            <input type="text" class="form-control" formControlName="complement" [(ngModel)]="service.addressInfo.complement">
                           </fieldset>
                         </div>
 
@@ -388,9 +388,15 @@
                       </div>
 
                       <div class="row">
+                        <!-- <div class="col-md-6" [hidden]="!showCropper">
+                            <button type="button btn-blue" (click)="addPhoto()" *ngIf="data.image" class="btn btn-raised btn-success">
+                                Enviar
+                            </button>
+                          <img-cropper #cropper [image]="data" [settings]="cropperSettings" class=""></img-cropper>
+                          </div> -->
                         <div class="col-md-12">
-                          <label for="photo" class="custom-label-photo">+</label>
-                          <input type="file" id="photo"  class="form-control" formControlName="preferredLanguage">
+                          <label for="photo" class="custom-label-photo" style="margin-top: -15px;" (click)="breve()">+</label>
+                         <!-- <input type="file" id="photo"  class="form-control" (change)="fileChangeListener($event)"/> -->
                         </div>
                       </div>
                     </div>
@@ -405,7 +411,7 @@
 
      <div class="form-actions">
         <div class="text-right">
-          <button type="submit" class="btn btn-round btn-primary btn-lg" style="display: inline-block;" (click)="saveSettings()" [disabled]="!form.valid">Salvar</button>
+          <button type="submit" class="btn btn-round btn-primary btn-lg" style="display: inline-block;" (click)="saveService()" [disabled]="!form.valid">Salvar</button>
         </div>
     </div>
 

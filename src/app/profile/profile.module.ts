@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ImageCropperModule } from 'ng2-img-cropper';
 import { NgxMaskModule } from 'ngx-mask';
+import { IntlInputPhoneModule } from 'intl-input-phone';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { AccountComponent } from './account/account.component';
 import { PersonalComponent } from './personal/personal.component';
@@ -17,6 +18,7 @@ import { SettingsComponent } from './settings/settings.component';
     ReactiveFormsModule,
     ImageCropperModule,
     NgxMaskModule,
+    IntlInputPhoneModule,
     ProfileRoutingModule
   ]
 })

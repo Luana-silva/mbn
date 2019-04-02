@@ -5,12 +5,14 @@ export class Constants {
   //public static get SERVICE_URL(): string { return "http://dev.mangobits.net"; };
 
 
-    //10
-   //public static get SERVICE_URL(): string { return "http://192.168.123.10:8080"; };
+    //Cloud
+  public static get SERVICE_URL(): string { return "http://cloud.mbn.mangotest.com"; };
 
-   // public static get SERVICE_URL(): string { return "http://192.168.123.10:8080"; };
+  // public static get SERVICE_URL(): string { return "http://192.168.123.10:8008"; };
 
-  public static get SERVICE_URL(): string { return "http://mangobits.servebeer.com:8080"; };
+  // public static get SERVICE_URL_BLOG(): string { return "http://blog.mbn.mangotest.com"; };
+
+  //public static get SERVICE_URL(): string { return "http://mangobits.servebeer.com:8080"; };
 
 
     //Desenvolvimento

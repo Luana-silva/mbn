@@ -45,29 +45,31 @@
                       </div>
 
                       <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="height: 28px;">
                           <fieldset class="form-group">
                             <label class="label-txt">Telefone</label>
                           </fieldset>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-xs-3">
+                        <!--<div class="col-md-3 col-sm-3 col-xs-3">
                           <fieldset class="form-group">
-                            <input type="text" class="form-control" formControlName="phoneCountryCode" [(ngModel)]="register.user.phoneCountryCode" mask="0*">
+                           <input type="text" class="form-control" formControlName="phoneCountryCode"  [(ngModel)]="register.user.phoneCountryCode" mask="0*"> 
                           </fieldset>
-                        </div>
-
-                        <div class="col-md-9 col-sm-9 col-xs-9">
+                        </div> -->
+                        <div class="col-md-12 col-sm-12 col-xs-12" *ngIf = "NumberModel != null">
                           <fieldset class="form-group">
-                            <input type="text" class="form-control" formControlName="phoneNumber" [(ngModel)]="register.user.phoneNumber" mask="0*">
+                            <!--<input type="text" class="form-control" formControlName="phoneNumber" [(ngModel)]="register.user.phoneNumber"> -->
+                            <intl-input-phone [ConfigurationOption]="configOption1" [NumberTextValue]="NumberModel" (OnNumberChange)="onNumberChage2($event)"></intl-input-phone>
                           </fieldset>
                         </div>
                       </div>
 
-                      <div class="row">
+                      <div class="row" style="
+                      margin-top: 9px;
+                  ">
                         <div class="col-md-6">
                           <fieldset class="form-group">
                             <label class="label-txt">Cpf</label>
-                            <input type="text" class="form-control" formControlName="document" [(ngModel)]="register.user.document" mask="0*">
+                            <input type="text" class="form-control" formControlName="document" [(ngModel)]="register.user.document" mask="000.000.000-00">
                             <small class="form-text text-muted danger"
                                 *ngIf="!form.get('document').valid && (form.get('document').dirty || form.get('document').touched)">
                                     Campo obrigatório
@@ -95,13 +97,9 @@
 
                     <div class="form-body">
                       <div class="row">
-                        <div class="col-md-12">
-                          <fieldset class="form-group">
-                            <label class="label-txt" for="txtzipCode">CEP</label>
-                          </fieldset>
-                        </div>
                         <div class="col-md-8 col-sm-8 col-xs-8">
                           <fieldset class="form-group">
+                            <label class="label-txt" for="txtzipCode">CEP</label>
                             <input type="text" class="form-control col-md-12" formControlName="zipCode" [(ngModel)]="register.user.lastAddress.zipCode" mask="0*">
                             <small class="form-text text-muted danger"
                                 *ngIf="!form.get('zipCode').valid && (form.get('zipCode').dirty || form.get('zipCode').touched)">
@@ -112,7 +110,7 @@
 
                         <div class="col-md-4 col-sm-4 col-xs-4">
                           <fieldset class="form-group">
-                            <button type="button" class="btn-link label-link" (click)="returnAddress()">
+                            <button type="button" class="btn-link label-link mt-2" style="margin-top: 22px;" (click)="returnAddress()">
                               Buscar CEP
                               <i class="fas fa-search fa-2x icon-search--gray"></i>
                             </button>
@@ -199,7 +197,7 @@
 
                         <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
                           <fieldset class="form-group">
-                              <label class="label-txt">Países</label>
+                              <label class="label-txt">País</label>
                               <select  class="form-control" formControlName="country" [(ngModel)]="register.user.lastAddress.country">
                                   <option value="África do Sul">África do Sul</option>
                                   <option value="Albânia">Albânia</option>
@@ -410,13 +408,13 @@
                       <div class="row">
                         <div class="col-md-12">
                           <fieldset class="form-group" style="margin-top: 37px;">
-                            <label class="label-txt label-txt--blue">Currículo</label>
+                            <label class="label-txt label-txt--blue" style="height: 7px; margin-top: 15px;">Currículo</label>
                           </fieldset>
                         </div>
 
                         <div class="col-md-12">
                           <fieldset class="form-group">
-                              <textarea  class="form-control form-textarea" formControlName="overview" [(ngModel)]="register.user.info.overview">{{ register.user.info.overview }}</textarea>
+                              <textarea  class="form-control form-textarea" style="height: 250px;" formControlName="overview" [(ngModel)]="register.user.info.overview">{{ register.user.info.overview }}</textarea>
 
                               <small class="form-text text-muted danger"
                                   *ngIf="!form.get('overview').valid && (form.get('overview').dirty || form.get('overview').touched)">
@@ -425,56 +423,55 @@
                           </fieldset>
                         </div>
                       </div>
-
+  
                       <div class="row">
                         <div class="col-md-6">
                           <fieldset class="form-group">
-                            <label class="label-txt label-txt--blue" for="txtComplement">Área de ocupação</label>
+                            <label class="label-txt label-txt--blue align-input" for="txtComplement">Área de ocupação</label>
                             <select type="text" class="form-control" formControlName="occupation" [(ngModel)]="register.user.info.occupation">
                               <option *ngFor="let occup of occupation" [value]="occup.id">{{ occup.name }}</option>
                             </select>
                           </fieldset>
                         </div>
-                    </div>
+                    </div> 
 
                       <div class="row">
                         <div class="col-md-12">
                           <fieldset class="form-group">
-                            <label class="label-txt label-txt--blue">Referenciais</label>
+                            <label class="label-txt label-txt--blue" style="height: 7px;">Referenciais</label>
                           </fieldset>
                         </div>
-                        <div class="col-md-12">
-                          <fieldset class="form-group">
-                            <ul class="skills" *ngIf="register?.userReference?.referenceValues">
-                              <li class="skills__item" *ngFor="let reference of register?.userReference?.referenceValues">
-                                <span class="label-txt">{{ reference.name }} - {{ reference.number }}</span>
-                                <a><img src="assets/images/icones/trashcan.png" alt="ìcone trash" width="18px"></a>
-                              </li>
-                            </ul>
-                          </fieldset>
+                        
+                        <div class="col-md-6">
+                            <fieldset class="form-group">
+                              <select type="text" class="form-control" formControlName="reference">
+                                <option *ngFor="let ref of reference"  [ngValue]="ref">{{ ref.name }}</option>
+                              </select>
+                            </fieldset>
+                          </div>
+  
+                          <div class="col-md-6">
+                            <fieldset class="form-group">
+                              <div class="input-add">
+                                <input type="text" class="form-control" id="txtName" formControlName="referenceCod">
+                                <a style="margin-left: 8px; cursor: pointer;" (click)="addRegisterValue()"><img src="assets/images/icones/plus.png" alt="Icon plus"></a>
+                              </div>
+                            </fieldset>
+                          </div>
                         </div>
                       </div>
 
                       <div class="row">
-                        <div class="col-md-6">
-                          <fieldset class="form-group">
-                            <select type="text" class="form-control" formControlName="reference">
-                              <option *ngFor="let ref of reference"  [ngValue]="ref">{{ ref.name }}</option>
-                            </select>
-                          </fieldset>
-                        </div>
-
-                        <div class="col-md-6">
-                          <fieldset class="form-group">
-                            <div class="input-add">
-                              <input type="text" class="form-control" id="txtName" formControlName="referenceCod">
-                              <a style="margin-left: 8px; cursor: pointer;" (click)="addRegisterValue()"><img src="assets/images/icones/plus.png" alt="Icon plus"></a>
+                          <div class="col-md-12">
+                              <fieldset class="form-group">
+                                <ul class="skills" *ngIf="register?.userReference?.referenceValues">
+                                  <li class="skills__item" *ngFor="let reference of register?.userReference?.referenceValues">
+                                    <span class="label-txt">{{ reference.name }} - {{ reference.number }}</span>
+                                    <a class="icon-cursor"><img src="assets/images/icones/trashcan.png" alt="ìcone trash" width="18px" (click)="removeReferenciais(reference)"></a>
+                                  </li>
+                                </ul>
+                              </fieldset>
                             </div>
-                          </fieldset>
-                        </div>
-                      </div>
-
-
                     </div>
                   </div>
                 </div>
@@ -486,7 +483,7 @@
 
     <div class="form-actions">
         <div class="text-right">
-          <button type="submit" class="btn btn-round btn-primary btn-lg" style="display: inline-block;" (click)="saveRegister()" [disabled]="!form.valid">Salvar</button>
+          <button type="submit" class="btn btn-round btn-primary btn-lg" style="display: inline-block;" (click)="saveRegister()">Salvar</button>
         </div>
     </div>
   </div>

@@ -79,8 +79,12 @@
 
 .filters-selected__list {
     display: flex;
+    flex-wrap: wrap;
     list-style: none;
-    overflow: auto;
+}
+
+.mb-2 {
+  margin-bottom: 10px;
 }
 
 .filters-selected__item {
@@ -111,6 +115,12 @@
 
 /* Acordeon styles */
 
+.filter-list li {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 2rem;
+}
+
 .filter-sidebar {
     border-right: 1px solid #c1c1c1;
 }
@@ -121,6 +131,10 @@
     font-size: 1.8rem;
 }
 
+.filter-list li .filter-value.selected {
+  background: #c1c1c1;
+  color: #FFF;
+}
 .tab {
     position: relative;
     margin-bottom: 1px;
@@ -130,6 +144,14 @@
     border-bottom: 1px solid #c1c1c1;
   }
 
+  .filter-list li:first-child {
+    margin-top: 10px;
+  }
+  
+  .filter-list li .filter-value {
+    padding: 2px 8px 2px 8px;
+    border-radius: calc(5px + 15px);
+  }
   .tab input {
     position: absolute;
     opacity: 0;
@@ -172,7 +194,7 @@
   .tab label::after {
     position: absolute;
     right: 0;
-    top: -30px;
+    top: -36px;
     display: block;
     /* width: 3em; */
     height: 3em;
@@ -197,12 +219,23 @@
   .tab input[type=checkbox]:checked + label::after {
     /* transform: rotate(315deg); */
     content: "-";
+    top: -41px !important;
   }
 
   .tab input[type=radio]:checked + label::after {
     transform: rotateX(180deg);
   }
 
+  .filter-value {
+    font-size: 1.6rem; 
+    margin-left: 18px;
+    display: block;
+    position: relative;
+    bottom: 3px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-orientation: upright;
+  }
 /* List filters */
 
 .filter-item {
@@ -221,6 +254,42 @@
   font-size: 1.8rem;
   color: #335f7c;
   margin-left: 15px;
+}
+
+.selected .checkmark {
+  border: 1px solid #324b98;
+  background: #324b98;
+  &:after {
+    display: block;
+  }
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border: 1px solid #c8c8c8;
+  border-radius: 4px;
+  background-color: #fff;
+  -moz-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  &:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 8px;
+    top: 3px;
+    width: 6px;
+    height: 14px;
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
 }
 
   @media(max-width: 500px) {
@@ -243,4 +312,4 @@
         border-bottom: 1px solid #c1c1c1;
       }
   }
-  /* gtk23Design */
+  

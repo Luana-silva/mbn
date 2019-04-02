@@ -17,5 +17,7 @@ export class Info {
   presetationPrice: string;
 
   visitPrice: string;
+
+  detail: string;
   
 }

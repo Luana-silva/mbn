@@ -47,13 +47,12 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/'])
           } else {
             console.log('Usuário inválido')
-            swal('Erro', 'Este usuário não foi encontrado, verifique e tente novamente', 'error')
+            swal('Erro', 'Usuário ou senha não encontrado, verifique e tente novamente', 'error')
+            // swal('Erro', 'Este usuário não foi encontrado, verifique e tente novamente', 'error')
           }
         });
     } else {
       console.log('O formulário está inválido, verifique todos os campos');
     }
-
-    console.log(this.user)
   }
 }

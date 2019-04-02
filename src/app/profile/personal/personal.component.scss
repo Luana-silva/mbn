@@ -69,3 +69,13 @@ input[type="file"] {
 .ng2-imgcrop input[type="file"] {
   display: none !important;
 }
+
+.align-input {
+  margin-top: 24px;
+}
+
+@media(max-width: 1200px) {
+  .align-input {
+    margin-top: 46px !important;
+  }
+}

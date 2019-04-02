@@ -44,7 +44,7 @@
                        <div class="col-md-12">
                          <fieldset class="form-group">
                            <label class="label-txt" for="txtComplement">R$/M<sup>2</sup></label>
-                           <input type="text" class="form-control" formControlName="price" [(ngModel)]="service.price" mask="0*">
+                           <input type="text" class="form-control" formControlName="price" [(ngModel)]="service.price" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
                          </fieldset>
                        </div>
                    </div>
@@ -53,11 +53,10 @@
                        <div class="col-md-12">
                          <fieldset class="form-group">
                            <label class="label-txt" for="txtComplement">Mensagem mínima</label>
-                           <input type="text" class="form-control" formControlName="minimalFootage" [(ngModel)]="service.info.minimalFootage">
+                           <input type="text" class="form-control" formControlName="minimalFootage" [(ngModel)]="service.info.minimalFootage" currencyMask [options]="{ prefix: 'M² ', thousands: '.', decimal: ',' }">
                          </fieldset>
                        </div>
                     </div>
-
 
                         <div class="card-header">
                           <h4 class="card-title mb-0 label-document">Valores de Serviços adicionais</h4>
@@ -70,7 +69,7 @@
                                 <div class="col-md-12">
                                   <fieldset class="form-group">
                                     <label class="label-txt" for="txtComplement">Reunião de apresentação</label>
-                                    <input type="text" class="form-control" formControlName="presetationPrice" [(ngModel)]="service.info.presetationPrice">
+                                    <input type="text" class="form-control" formControlName="presetationPrice" [(ngModel)]="service.info.presetationPrice" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
                                   </fieldset>
                                 </div>
                             </div>
@@ -79,7 +78,7 @@
                                 <div class="col-md-12">
                                   <fieldset class="form-group">
                                     <label class="label-txt" for="txtComplement">Visita técnica</label>
-                                    <input type="text" class="form-control" formControlName="visitPrice" [(ngModel)]="service.info.visitPrice">
+                                    <input type="text" class="form-control" formControlName="visitPrice" [(ngModel)]="service.info.visitPrice" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
                                   </fieldset>
                                 </div>
                              </div>
@@ -87,7 +86,7 @@
                              <div class="row">
                                <div class="col-md-12">
                                  <fieldset class="form-group">
-                                   <label class="label-txt">Outra taxa ou desconto</label>
+                                   <label class="label-txt" style="height: 5px;">Outra taxa ou desconto</label>
                                  </fieldset>
                                </div>
                                <div class="col-md-9 col-sm-9 col-xs-9">
@@ -98,7 +97,7 @@
 
                                <div class="col-md-3 col-sm-3 col-xs-3">
                                  <fieldset class="form-group">
-                                   <input type="text" class="form-control" formControlName="value" [(ngModel)]="service.otherTaxes.value" placeholder="Valor">
+                                   <input type="text" class="form-control" formControlName="value" [(ngModel)]="service.otherTaxes.value" placeholder="Valor" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
                                  </fieldset>
                                </div>
                              </div>
@@ -126,7 +125,7 @@
                        <div class="col-md-6">
                          <fieldset class="form-group">
                            <label class="label-txt" for="txtComplement">Dias</label>
-                           <input type="text" class="form-control" formControlName="executionTime" [(ngModel)]="service.executionTime">
+                           <input type="text" class="form-control" formControlName="executionTime" [(ngModel)]="service.executionTime" mask="0*">
                          </fieldset>
                        </div>
                    </div>
@@ -138,23 +137,14 @@
 
              <div class="card">
                <div class="card-header">
-                 <h4 class="card-title mb-0 label-document">Tipologia Construtiva</h4>
+                 <h4 class="card-title mb-0 label-document" style="height: 12px;margin-top: 5px;">Tipologia Construtiva</h4>
                </div>
                <div class="card-body">
                  <div class="card-block">
 
                    <div class="form-body">
                      <div class="row">
-                       <div class="col-md-12">
-                         <fieldset class="form-group">
-                           <ul class="skills" *ngIf="typologies">
-                             <li class="skills__item" *ngFor="let typology of typologies">
-                               <span class="label-txt">{{ typology }}</span>
-                               <a><img src="assets/images/icones/trashcan.png" (click)="removeTypologies(typology)" alt="ìcone trash" width="18px"></a>
-                             </li>
-                           </ul>
-                         </fieldset>
-                       </div>
+                       
 
                        <div class="col-md-12">
                          <fieldset class="form-group">
@@ -165,6 +155,16 @@
                          </fieldset>
                       </div>
 
+                      <div class="col-md-12">
+                          <fieldset class="form-group">
+                            <ul class="skills" *ngIf="typologies">
+                              <li class="skills__item" *ngFor="let typology of typologies">
+                                <span class="label-txt">{{ typology }}</span>
+                                <a class="icon-cursor"><img src="assets/images/icones/trashcan.png" (click)="removeTypologies(typology)" alt="ìcone trash" width="18px"></a>
+                              </li>
+                            </ul>
+                          </fieldset>
+                        </div>
                    </div>
 
                    </div>
@@ -174,7 +174,7 @@
 
              <div class="card">
                <div class="card-header">
-                 <h4 class="card-title mb-0 label-document">Restrição</h4>
+                 <h4 class="card-title mb-0 label-document" style="margin-top: 22px;">Restrição</h4>
                </div>
                <div class="card-body">
                  <div class="card-block">
@@ -183,23 +183,23 @@
                      <div class="row">
                        <div class="col-md-12">
                          <fieldset class="form-group">
-                           <ul class="skills" *ngIf="restrictions">
-                             <li class="skills__item" *ngFor="let restriction of restrictions">
-                               <span class="label-txt">{{ restriction }}</span>
-                               <a><img src="assets/images/icones/trashcan.png" alt="ìcone trash" width="18px" (click)="removeRestrictions(restriction)"></a>
-                             </li>
-                           </ul>
-                         </fieldset>
-                       </div>
-
-                       <div class="col-md-12">
-                         <fieldset class="form-group">
                            <div class="input-add">
                              <input type="text" class="form-control" id="txtName" formControlName="restriction">
                              <a style="margin-left: 8px; cursor: pointer;" (click)="addRestrictions()"><img src="assets/images/icones/plus.png" alt="Icon plus"></a>
                            </div>
                          </fieldset>
                       </div>
+
+                      <div class="col-md-12">
+                          <fieldset class="form-group">
+                            <ul class="skills" *ngIf="restrictions">
+                              <li class="skills__item" *ngFor="let restriction of restrictions">
+                                <span class="label-txt">{{ restriction }}</span>
+                                <a class="icon-cursor"><img src="assets/images/icones/trashcan.png" alt="ìcone trash" width="18px" (click)="removeRestrictions(restriction)"></a>
+                              </li>
+                            </ul>
+                          </fieldset>
+                        </div>
 
                    </div>
 

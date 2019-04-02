@@ -22,6 +22,10 @@ export class SettingsComponent implements OnInit {
 
   setting: Setting;
 
+  languages: any[] = [];
+
+  currency: any[] = [];
+
   constructor(private profileService: ProfileService,
               private storage: StorageUtils,
               private authService: AuthService,
@@ -35,11 +39,13 @@ export class SettingsComponent implements OnInit {
       preferredLanguage: this.fb.control(this.setting.preferredLanguage, [Validators.required]),
       timeZone: this.fb.control(this.setting.timeZone, [Validators.required]),
       languages: this.fb.control(this.setting.languages, [Validators.required]),
+      preferredCurrency: this.fb.control(this.setting.preferredCurrency, [Validators.required]),
+      preferredUnitySystem: this.fb.control(this.setting.preferredUnitySystem, [Validators.required]),
     })
 
-
-
     this.loadSettings();
+    this.loadLanguages();
+    this.loadCurrency();
   }
 
 
@@ -54,11 +60,31 @@ export class SettingsComponent implements OnInit {
       })
   }
 
+  loadLanguages() {
+
+    this.profileService.loadLanguages()
+      .subscribe(languages => {
+        this.languages = languages['data'];
+      })
+  }
+
+  loadCurrency() {
+
+    this.profileService.loadCurrency()
+      .subscribe(currency => {
+        this.currency = currency['data'];
+      })
+  }
+
   saveSettings() {
     this.profileService.saveSettings(this.setting)
       .subscribe(response => {
         console.log(response);
-        Swall('Sucesso', 'Informações salvas com sucesso', 'success');
+        if(response['success']) {
+          Swall('Sucesso', 'Informações salvas com sucesso', 'success');
+        } else {
+          Swall('Erro', 'Não foi possível salvar, verifique e tente novamente', 'error');
+        }
       })
   }
 /*

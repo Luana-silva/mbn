@@ -1,5 +1,6 @@
 import { Info } from '../info/info';
 import { OtherTaxes } from '../otherTaxes/otherTaxes';
+import { Address } from '../address/address';
 
 export class Service {
 
@@ -9,6 +10,8 @@ export class Service {
 
   info: Info;
 
+  addressInfo: Address;
+
   executionTime: any;
 
   typology: any;
@@ -17,4 +20,22 @@ export class Service {
 
   serviceHistories: any;
 
+  name: string;
+
+  desc: string;
+
+  category: any;
+
+  references: any;
+
+  comprehensiveness: any;
+
+  license: any;
+
+  idObj: string;
+
+  status: string;
+
+  id: string;
+  
 }

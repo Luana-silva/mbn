@@ -12,6 +12,7 @@ import { Address } from '../address/address';
 import { Info } from '../info/info';
 import { UserReference } from '../userReference/userReference';
 import { PhotoUpload } from '../photo/photo-upload';
+import { ConfigurationOptions, ContentOptionsEnum, NumberResult, OutputOptionsEnum }from 'intl-input-phone';
 
 @Component({
   selector: 'app-personal',
@@ -20,6 +21,8 @@ import { PhotoUpload } from '../photo/photo-upload';
 })
 export class PersonalComponent implements OnInit {
 
+  umteste = '(00)0000-0000';
+  
   form: FormGroup;
 
   data: any;
@@ -40,9 +43,16 @@ export class PersonalComponent implements OnInit {
 
   occupation: any[] = [];
 
+  configOption1 : ConfigurationOptions;
+
+  OutputValue : NumberResult = new NumberResult();
+
+  NumberModel: any;
+  
   logoUrl;
 
   showCropper: boolean;
+
 
   @ViewChild('cropper', undefined)
 
@@ -52,6 +62,9 @@ export class PersonalComponent implements OnInit {
               private storage: StorageUtils,
               private authService: AuthService,
               private fb: FormBuilder) {
+          
+          this.configOption1 = new ConfigurationOptions();
+          this.configOption1.SelectorClass = "WithBasic";
 
           this.showCropper = false;
           this.cropperSettings = new CropperSettings();
@@ -81,8 +94,8 @@ export class PersonalComponent implements OnInit {
     this.form = this.fb.group({
       name: this.fb.control(this.register.user.name, [Validators.required]),
       document: this.fb.control(this.register.user.document, [Validators.required]),
-      phoneCountryCode: this.fb.control(this.register.user.phoneCountryCode, [Validators.required]),
-      phoneNumber: this.fb.control(this.register.user.phoneNumber, [Validators.required]),
+     // phoneCountryCode: this.fb.control(this.register.user.phoneCountryCode, [Validators.required]),
+      //phoneNumber: this.fb.control(this.register.user.phoneNumber, [Validators.required]),
       gender: this.fb.control(this.register.user.gender, [Validators.required]),
       country: this.fb.control(this.register.user.lastAddress.country, [Validators.required]),
       city: this.fb.control(this.register.user.lastAddress.city, [Validators.required]),
@@ -94,8 +107,8 @@ export class PersonalComponent implements OnInit {
       street: this.fb.control(this.register.user.lastAddress.street, [Validators.required]),
       overview: this.fb.control(this.register.user.info.overview, [Validators.required]),
       occupation: this.fb.control(this.register.user.info.occupation, [Validators.required]),
-      reference: this.fb.control('', [Validators.required]),
-      referenceCod: this.fb.control('', [Validators.required]),
+      reference: this.fb.control('', []),
+      referenceCod: this.fb.control('', []),
     })
 
     this.loadReference();
@@ -103,23 +116,32 @@ export class PersonalComponent implements OnInit {
     this.loadRegister();
 
     this.loadOccupation();
+
+  }
+
+  testetesteste() {
+      this.NumberModel = '+55 11000000000';
+      console.log('aaaaaaaaa')
   }
 
   loadRegister() {
-
     const idUser = this.storage.getIdUser() ? this.storage.getIdUser() : null;
 
     this.logoUrl = this.getUrl(idUser);
 
-    console.log('logo', this.logoUrl)
     if(idUser) {
       this.profileService.loadRegister(idUser)
         .subscribe(user => {
-
           this.register = user['data'];
+          // console.log('phone', user['data'].user.phone)
           this.register.userReference.referenceValues = user['data'].userReference.referenceValues;
           if(!user['data'].user.lastAddress) {
             this.register.user.lastAddress = new Address();
+          }
+
+          if(user['data'].user.phone!= null){
+            this.register.user.phone = user['data'].user.phone;
+            this.NumberModel = this.register.user.phone;
           }
 
           if(!user['data'].user.info) {
@@ -130,9 +152,12 @@ export class PersonalComponent implements OnInit {
             this.register.userReference.referenceValues = new Array();
           }
 
-          console.log(user['data'].user.lastAddress)
-          console.log(Object.keys(user['data'].user))
+          if(this.register.user.phone == null){
+            this.testetesteste()
+          }
         })
+
+        // this.testetesteste()
     }
 
     //this.profileService.loadRegister()
@@ -153,7 +178,6 @@ export class PersonalComponent implements OnInit {
 
     this.profileService.returnAddress(cep)
       .subscribe(response => {
-        console.log(response)
         this.register.user.lastAddress.street = response['logradouro'];
         this.register.user.lastAddress.complement = response['complement'];
         this.register.user.lastAddress.district = response['bairro'];
@@ -172,15 +196,28 @@ export class PersonalComponent implements OnInit {
       number: referenceCod,
       idReference: reference.id
     })
-    console.log(this.register.userReference.referenceValues)
+
+    this.form.get('reference').setValue('');
+    this.form.get('referenceCod').setValue('');
   }
 
   saveRegister() {
-    this.profileService.saveRegister(this.register)
-      .subscribe(response => {
-        console.log(response);
-        Swall('Sucesso', 'Informações salvas com sucesso', 'success');
+    if(this.form.valid) {
+      this.profileService.saveRegister(this.register)
+        .subscribe(response => {
+          console.log(response);
+          Swall('Sucesso', 'Informações salvas com sucesso', 'success');
+        })
+    } else {
+      Object.keys(this.form.controls).forEach(field => {
+        const control = this.form.get(field);
+        control.markAsDirty();
       })
+    }
+  }
+
+  removeReferenciais(reference) {
+    this.register.userReference.referenceValues = this.register.userReference.referenceValues.filter(t => t != reference)
   }
 
   addPhoto() {
@@ -204,10 +241,35 @@ export class PersonalComponent implements OnInit {
         console.log(photoUpload);
 
       this.logoUrl = uploadedImage;
+
+
       this.showCropper = false;
       this.loadRegister();
     });
 
+  }
+
+  onNumberChage2(outputResult) {
+    console.log("Output result 2 is", outputResult.Number);    
+    this.register.user.phone = this.stripNumberWithPlus(outputResult.Number);
+    this.register.user.phoneCountryCode = this.parsePhoneCountry(this.stripNumber(outputResult.Number));
+    this.register.user.phoneNumber = this.parsePhone(this.stripNumber(outputResult.Number), this.register.user.phoneCountryCode);
+  }
+
+  stripNumber(number) {
+    return number.replace('(', '').replace(')', '').replace('-', '').replace('+', '');
+  }
+
+  stripNumberWithPlus(number) {
+    return number.replace('(', '').replace(')', '').replace('-', '');
+  }
+
+  parsePhoneCountry(phone) {
+    return phone.split(' ')[0];
+  }
+
+  parsePhone(phone, phoneCountry) {
+    return phone.replace(phoneCountry, '').trim().replace(/\s/ig, '');
   }
 
   // cropper
@@ -227,7 +289,6 @@ export class PersonalComponent implements OnInit {
   }
 
   getUrl(idUser): string {
-    // http://192.168.123.10:8080/MBNWs/rs/user/userImage/8fa06e87-d7ee-4365-8e6b-6684176a0b00/main
     let url = `${Constants.SERVICE_URL}${Constants.SERVICE_PROJECT}user/userImage/${idUser}/main`;
     return url;
   }

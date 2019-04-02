@@ -9,7 +9,7 @@
 }
 
 .bg-top {
-    background: url(https://bitbucket.org/mangobits/mbnsite/raw/a17c7d7a723d3612a06dcb0faef52d40f68155a6/src/assets/images/bg/mask.png);
+    background: url(https://i.imgur.com/8VIGug5.png);
     background-position: 7% top;
     background-repeat: no-repeat;
 }
@@ -187,7 +187,7 @@
 }
 
 
-@media(max-width: 500px) {
+@media(max-width: 768px) {
     .card__image {
         img {
             width: auto !important;
@@ -216,7 +216,7 @@
   width: 80%;
   margin-right: auto;
   margin-left: auto;
-  height: 300px;
+  height: 150px;
 }
 
 .card-highlights {
@@ -246,6 +246,7 @@
     background: #FFF;
     width: 25%;
     padding: 20px;
+    height: 250px;
     transition: .3s linear;
     box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
 }
@@ -263,6 +264,7 @@
     display: flex;
     justify-content: space-around;
     background: #FCFCFC;
+    height: 250px;
 }
 
 .testimony__profile {
@@ -371,7 +373,7 @@
 
     .arrow {
         position: absolute;
-        bottom: 50%;
+        bottom: 41%;
         border: none;
         display: block;
         text-align: center;
@@ -403,7 +405,7 @@
     justify-content: center;
     width: 100%;
     padding: 5px;
-    margin-top: 25px;
+    margin-top: 25px !important;
   }
 
   .dots__item {
@@ -426,7 +428,7 @@
 
   .arrow {
     position: absolute;
-    bottom: 50%;
+    bottom: 41%;
     border: none;
     display: block;
     text-align: center;
@@ -450,13 +452,16 @@
 
   .img-grid {
     padding: 8px;
-    width: 46%;
+    width: 50%;
   }
 
   .img-grid img {
-    height: 284px;
+    height: auto;
 }
 
+.masonry-item { 
+    width: 200px; 
+}
 @media (max-width: 500px) {
     .img-grid img {
         height: auto;
@@ -468,7 +473,7 @@
   .card-article {
       border-radius: 10px;
       background: #FFF;
-      height: 400px;
+      height: 430px;
       padding: 15px;
       margin-bottom: 15px;
   }
@@ -479,6 +484,19 @@
       color: #484645;
       font-weight: 500;
   }
+
+  .jobs {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.img-grid {
+  float: left;
+  margin: 0;
+  padding: 10px;
+  width: 50%;
+}
 
   @media(max-width: 500px) {
 
@@ -552,30 +570,106 @@
     flex-wrap: wrap;
   }
 
-  @media(max-width: 1135px) {
-      .jobs {
-          width: 100%;
-          padding: 20px;
-          text-align: center;
-      }
+  .jobs {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
 
-      .img-grid {
-        float: left;
-        margin: 0;
-        padding: 10px;
-        width: 50%;
-    }
-  }
+.img-grid {
+  float: left;
+  margin: 0;
+  padding: 10px;
+  width: 50%;
+}
 
+.cols {
+   /* column-count: 3;
+    column-gap: 1%;
+    column-width: 33%;*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: safe;
+}
+
+.container-x {
+    width: 100%;
+    /*max-width: 1000px;*/
+    margin-top: 60px;
+}
+
+.box {
+    margin-bottom: 20px;
+    /*border: 1px solid #f1f1f1;*/
+    padding: 5px;
+}
+
+.box:not(:nth-child(3n)) {
+    margin-right: 3%;
+    outline: 2px solid green !important;
+}
+
+.box:nth-child(1) {
+    height: 300px;
+    width: 37%;
+}
+
+.box:nth-child(2) {
+    height: 300px;
+    width: 27%;
+}
+
+.box:nth-child(3) {
+    height: 300px;
+    width: 30%;
+}
+
+.box:nth-child(4) {
+    height: 300px;
+    width: 45%;
+}
+
+.box:nth-child(5) {
+    height: 300px;
+    width: 30%;
+}
+
+.box:nth-child(6) {
+    height: 300px;
+    width: 19%;
+}
+
+.box:nth-child(7) {
+    height: 300px;
+    width: 25%;
+}
+
+.box:nth-child(8) {
+    height: 300px;
+    width: 24%;
+}
+
+.box:nth-child(9) {
+    height: 300px;
+    width: 45%;
+}
 
   .section-sac {
-      background: url(https://bitbucket.org/mangobits/mbnsite/raw/175be628bfab99020d5bc508fbcbe5234c0ee643/src/assets/images/bg/mas-blue-v2.png);
+      background: url(https://i.imgur.com/VT6gNwn.png);
       background-position: bottom left;
       background-repeat: no-repeat;
       padding: 60px 0;
   }
 
   @media(max-width: 500px) {
+
+    .main {
+        background-position: center;
+        background-size: cover;
+        height: 40vh;
+        position: relative;
+    }
+
     .section-sac {
         background: none;
     }
@@ -612,9 +706,39 @@
          /*  transform: scale(1.4); */
           background: #FFF;
           width: 50%;
-          padding: 20px;
+          padding: 10px;
           transition: .3s linear;
           box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
       }
 
+  }
+
+  .flex {
+      display: flex;
+  }
+
+  .flex-center {
+      justify-content: center;
+      align-items: center;
+  }
+
+  .flex-right {
+      justify-content: flex-end;
+  }
+
+  .btn-plus {
+    width: 50px;
+    height: 50px;
+    background: #3e85bd;
+    border-radius: 50%;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.4rem;
+    cursor: pointer;
+  }
+
+  .box-button {
+      width: 200px;
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Constants } from '../../utils/constants'
 import { AuthService } from '../../shared/auth/auth.service';
 import Swall from "sweetalert2";
@@ -33,7 +34,9 @@ export class RegisterAdOneComponent implements OnInit {
   constructor(private storage: StorageUtils,
               private authService: AuthService,
               private fb: FormBuilder,
-              private advertService: AdvertService) { }
+              private advertService: AdvertService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -82,13 +85,21 @@ export class RegisterAdOneComponent implements OnInit {
   }
 
   saveService() {
-
+    this.service.idObj = this.storage.getIdUser();
     this.service.restriction = this.restrictions;
     this.service.typology = this.typologies;
+    this.service.status = 'PENDENT';
 
     this.advertService.saveService(this.service)
       .subscribe(response => {
         console.log(response);
+        if(response['success']) {
+          const id = response['data'].id;
+          this.router.navigate([`/listing-details/${id}`]);
+        } else {
+           Swall('Erro', 'Não foi possível salvar, verifique e tente novamente', 'error')
+          }
+
       })
   }
 

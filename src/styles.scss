@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+.nobreak {
+    white-space: nowrap;
+}
+
 ul {
   margin: 0 !important;
   padding: 0 !important;
@@ -141,6 +145,10 @@ ul {
     border-radius: 15px;
 }
 
+.icon-cursor {
+  cursor: pointer;
+}
+
 canvas {
   max-width: 100% !important;
 }
@@ -168,6 +176,25 @@ canvas {
     margin-top: 30px;
 }
 
+.block {
+    display: block;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-bottom {
+    align-items: flex-end;
+}
+
+.mart-4 {
+    margin-top: 40px;
+}
+
+.mart-8 {
+    margin-top: 80px;
+}
 
 @media(max-width: 500px) {
 
@@ -235,7 +262,20 @@ canvas {
     color: #2c6085;
 }
 
+.title-blue {
+    color: #337ab7;
+}
+
 @media(max-width: 500px) {
+
+    .bnt-mobile {
+        height: 33px !important;
+        width: 90px !important;
+        font-size: 1.2rem !important;
+        line-height: 18px !important;
+        -webkit-text-stroke-width: unset !important;
+        font-weight: 500 !important;
+    }
 
 .title-section {
     text-align: center;
@@ -315,7 +355,7 @@ canvas {
       position: absolute;
       display: none;
       left: 8px;
-      top: 1px;
+      top: 3px;
       width: 6px;
       height: 14px;
       border: solid #fff;
@@ -327,5 +367,54 @@ canvas {
   }
   &:hover input ~ .checkmark {
     border-color: #324b98;
+  }
+}
+
+
+.input-main-div .CountryNumberInput {
+    text-indent: 120px;
+    height: 33px !important;
+    width: 100% !important;
+    min-width: 250px;
+}
+
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 33px !important;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.CountryOptionSelected .flags {
+    height: 30px !important;
+    width: 30px;
+}
+
+@media(max-width: 990px) {
+  .menu-ad {
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .menu-ad__item {
+    width: 100% !important;
+  }
+
+  .menu-ad__item:first-child {
+    margin-top: 12px !important;
+  }
+
+  .menu-ad__item {
+    margin-bottom: 12px !important;
+  }
+
+  .menu-ad__link {
+    font-size: 1.7rem !important;
   }
 }

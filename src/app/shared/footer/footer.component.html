@@ -1,7 +1,7 @@
 <footer class="section footer">
     <div class="container">
       <div class="row">
-        <div class="footer-group col-md-4">
+        <div class="footer-group col-md-4 col-sm-5 col-xs-4">
           <div class="social">
             <img class="icon-white" src="assets/images/icones/facebook.svg" alt="Ícone do facebook">
             <img class="icon-white" src="assets/images/icones/twitter.svg" alt="Ícone do twitter">
@@ -9,7 +9,7 @@
           </div>
         </div>
 
-        <div class="footer-group col-md-5">
+        <div class="footer-group col-md-5 col-sm-4 col-xs-8">
           <ul class="footer__links">
               <li class="footer__link">Carreiras</li>
               <li class="footer__link">Ajuda</li>
@@ -20,14 +20,16 @@
           </ul>
         </div>
 
-        <div class="footer-group col-md-3">
+        <div class="col-xs-12 visible-xs"><br></div>
+        <div class="col-xs-4 visible-xs"></div>
+          <div class="footer-group col-md-3 col-sm-3 col-xs-6">
             <div class="lang">
-                <img src="assets/images/icones/worldwide.svg">
-                <span class="lang-label">Português</span>
+              <img src="assets/images/icones/worldwide.svg" class="pointer" (click)="redirectPersonal()">
+              <span class="lang-label">Português</span>
             </div>
-            
             <span class="copyright">&copy; 2018 MybuildingNet</span>
-        </div>
+          </div>
+
       </div>
     </div>
   </footer>

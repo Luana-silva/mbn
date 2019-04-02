@@ -77,7 +77,12 @@ export class RegisterCadastreComponent implements OnInit {
            }
           })
         } else {
-           swal('Erro', 'Não foi possível realizar o cadastro, verifique e tente novamente', 'error')
+            if(user['desc'] == 'email_exists') {
+              swal('Erro', 'Este email já está cadastrado, use outro e tente novamente', 'error')
+            } else {
+              swal('Erro', 'Não foi possível realizar o cadastro, verifique e tente novamente', 'error')
+            }
+
           }
        })
   }

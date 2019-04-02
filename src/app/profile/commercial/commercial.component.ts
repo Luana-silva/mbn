@@ -12,6 +12,7 @@ import { Address } from '../address/address';
 import { Info } from '../info/info';
 import { UserReference } from '../userReference/userReference';
 import { PhotoUpload } from '../photo/photo-upload';
+import { ConfigurationOptions, ContentOptionsEnum, NumberResult, OutputOptionsEnum }from 'intl-input-phone';
 
 @Component({
   selector: 'app-commercial',
@@ -38,6 +39,12 @@ export class CommercialComponent implements OnInit {
 
   showCropper: boolean;
 
+  configOption1 : ConfigurationOptions;
+
+  OutputValue : NumberResult = new NumberResult();
+
+  NumberModel: any;
+
   @ViewChild('cropper', undefined)
 
   cropper: ImageCropperComponent;
@@ -47,6 +54,9 @@ export class CommercialComponent implements OnInit {
               private authService: AuthService,
               private fb: FormBuilder) {
 
+                this.configOption1 = new ConfigurationOptions();
+                this.configOption1.SelectorClass = "WithBasic";
+          
                 this.showCropper = false;
                 this.cropperSettings = new CropperSettings();
                 this.cropperSettings.width = 100;
@@ -73,8 +83,8 @@ export class CommercialComponent implements OnInit {
     this.form = this.fb.group({
       fantasyName: this.fb.control(this.company.fantasyName, [Validators.required]),
       document: this.fb.control(this.company.document, []),
-      phoneCountryCode: this.fb.control(this.company.phoneCountryCode, [Validators.required]),
-      phoneNumber: this.fb.control(this.company.phoneNumber, [Validators.required]),
+      // phoneCountryCode: this.fb.control(this.company.phoneCountryCode, [Validators.required]),
+      // phoneNumber: this.fb.control(this.company.phoneNumber, [Validators.required]),
       country: this.fb.control(this.company.addressInfo.country, [Validators.required]),
       city: this.fb.control(this.company.addressInfo.city, [Validators.required]),
       complement: this.fb.control(this.company.addressInfo.complement, []),
@@ -111,6 +121,14 @@ export class CommercialComponent implements OnInit {
         if(!company['data'].info) {
           this.company.info = new Info();
         }
+        if(company['data'].phone!= null){
+          this.company.phone = company['data'].phone;
+          this.NumberModel = this.company.phone;
+        }
+
+        if(this.company.phone == null){
+          this.NumberModel = '+55 11000000000';
+        }
       })
   }
 
@@ -129,16 +147,44 @@ export class CommercialComponent implements OnInit {
   }
 
   saveCompany() {
-
-    this.profileService.saveCompany(this.company)
-      .subscribe(response => {
-        console.log(response);
-        if(response['success']) {
-          Swall('Sucesso', 'Informações salvas com sucesso', 'success');
-        } else {
-           Swall('Erro', 'Não foi possível salvar, verifique e tente novamente', 'error')
-          }
+    if(this.form.valid) {
+      this.profileService.saveCompany(this.company)
+        .subscribe(response => {
+          console.log(response);
+          if(response['success']) {
+            Swall('Sucesso', 'Informações salvas com sucesso', 'success');
+          } else {
+             Swall('Erro', 'Não foi possível salvar, verifique e tente novamente', 'error')
+            }
+        })
+    } else {
+      Object.keys(this.form.controls).forEach(field => {
+        const control = this.form.get(field);
+        control.markAsDirty();
       })
+    }
+  }
+
+  onNumberChage2(outputResult) {
+    this.company.phone = this.stripNumberWithPlus(outputResult.Number);
+    this.company.phoneCountryCode = this.parsePhoneCountry(this.stripNumber(outputResult.Number));
+    this.company.phoneNumber = this.parsePhone(this.stripNumber(outputResult.Number), this.company.phoneCountryCode);
+  }
+
+  stripNumber(number) {
+    return number.replace('(', '').replace(')', '').replace('-', '').replace('+', '');
+  }
+
+  stripNumberWithPlus(number) {
+    return number.replace('(', '').replace(')', '').replace('-', '');
+  }
+
+  parsePhoneCountry(phone) {
+    return phone.split(' ')[0];
+  }
+
+  parsePhone(phone, phoneCountry) {
+    return phone.replace(phoneCountry, '').trim().replace(/\s/ig, '');
   }
 
   addPhoto() {
@@ -190,32 +236,4 @@ export class CommercialComponent implements OnInit {
     return url;
   }
 
-  /*
-
-  {
-    "id": "9fddcbf1-f894-404a-935d-eec019aad1b6",
-    "idUser": "cc493975-9a0e-495a-8530-66c59e8b795d",
-    "document": "902318049218",
-    "fantasyName": "Empresa do Renan",
-    "status": "ACTIVE",
-    "phoneNumber": 40028922,
-    "phoneCountryCode": 55,
-    "addressInfo" : {
-        "complement" : "...",
-        "zipCode" : "06604130",
-        "number" : "55",
-        "city" : "Jandira",
-        "district" : "Jardim Novo Horizonte",
-        "street" : "Rua Sonia Maria F. de Andrade",
-        "country" : "Brazil",
-        "state" : "São Paulo"
-    },
-    "info": {
-        "hiringRules": "Lorem ipsum sapien porttitor tincidunt consectetur nibh quis sagittis, dapibus nec arcu ac diam cubilia sit faucibus massa, aliquam quisque aliquet duis dolor nec elementum. laoreet ultricies pellentesque risus aliquam lectus dui sit suscipit, justo aenean dapibus cras euismod enim himenaeos consectetur, placerat et lacinia cursus venenatis lacus et. lorem nisi dictum dui convallis neque accumsan ligula eleifend aenean, senectus interdum commodo duis habitant etiam consectetur proin. accumsan pharetra ut erat vitae scelerisque eleifend mauris maecenas, donec venenatis curabitur lobortis magna vel vulputate vel quisque, luctus venenatis aenean laoreet quam varius viverra. Arcu aliquet euismod sociosqu aptent commodo ut malesuada egestas pulvinar risus at, hac habitant tortor donec dapibus pharetra risus tristique phasellus. quam leo convallis luctus eros nulla erat rutrum nec, hac ut himenaeos metus porta elementum leo vel mollis, quis quam tempus erat libero vitae sodales. donec fringilla rhoncus proin a etiam vivamus nostra, aenean libero curabitur sociosqu donec erat tempus egestas, porttitor pharetra fermentum potenti convallis hac. consectetur nostra praesent inceptos eros class fermentum aenean est eleifend egestas venenatis id tincidunt conubia vivamus, lacus ut metus donec lobortis augue aenean egestas tincidunt lectus urna netus ante at.Fermentum duis dolor aliquet odio libero justo praesent dapibus tellus leo, cursus sed litora inceptos donec netus sem purus a cursus, proin primis morbi varius ac lacinia dictumst blandit ornare.",
-        "comprehensiveness" : "Barueri, Brazil",
-        "fgIsCompany" : "true",
-        "fgShow" : "true"
-    }
-}
-*/
 }

@@ -76,16 +76,24 @@ search(terms: Observable<string>) {
 
   searchEntries(term) {
     return this.http
-        .get(`${Constants.SERVICE_URL}${Constants.SERVICE_PROJECT}categoryExt/searchCategory/${term}`)
+        .get(`${Constants.SERVICE_URL}${Constants.SERVICE_PROJECT}categoryExt/searchCategoryName/${term}`)
         .pipe(map(res => res));
   }
 
   loadPosts() {
     // http://localhost:8000/wp-json/wp/v2/posts?per_page=3
-
+    // http://blog.mbn.mangotest.com
     return this.http
-        .get(`${Constants.SERVICE_URL}:8007/wp-json/wp/v2/posts?per_page=3`)
+        .get(`${Constants.SERVICE_URL_BLOG}/wp-json/wp/v2/posts?per_page=3`)
         .pipe(map(res => res));
   }
 
+
+  
+  loadSolutions(search: any) {
+    // http://127.0.0.1:8080/MBNWs/rs/categoryExt/searchCategory
+    return this.http
+    .post(`${Constants.SERVICE_URL}${Constants.SERVICE_PROJECT}categoryExt/searchCategory`, search)
+    .pipe(map(res => res));
+  }
 }

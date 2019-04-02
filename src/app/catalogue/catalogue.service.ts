@@ -35,6 +35,16 @@ export class CatalogueService {
                     .pipe(map(response => response))
               }
 
-              
+      loadLanguages() {
+        //http://192.168.123.10:8080/MBNWs/rs/language/listAll
 
+        return this.http.get(`${Constants.SERVICE_URL}${Constants.SERVICE_PROJECT}language/listAll`)
+            .pipe(map(response => response))
+      }
+
+      loadReferences() {
+        //http://192.168.123.10:8080/MBNWs/rs/reference/listAll
+        return this.http.get(`${Constants.SERVICE_URL}${Constants.SERVICE_PROJECT}reference/listAll`)
+            .pipe(map(response => response))
+      }
 }

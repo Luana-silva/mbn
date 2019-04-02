@@ -8,6 +8,9 @@ export class Setting {
 
 	preferredLanguage: string;
 
+  preferredCurrency: string;
+
+  preferredUnitySystem: string;
 	
 	timeZone: string;
 	

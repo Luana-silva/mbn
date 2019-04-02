@@ -13,6 +13,8 @@ export class Company {
 
   document : string;
 
+  phone : string;
+
   phoneCountryCode : any;
 
   phoneNumber : any;

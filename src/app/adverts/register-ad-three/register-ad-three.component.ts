@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Route, Router, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
 import { Constants } from '../../utils/constants'
 import { AuthService } from '../../shared/auth/auth.service';
 import Swall from "sweetalert2";
@@ -23,7 +24,9 @@ export class RegisterAdThreeComponent implements OnInit {
 
   service: Service;
 
-  typologies: any[] = [];
+  comprehensivenessList: any[] = [];
+
+  licenseList: any[] = [];
 
   restrictions: any[] = [];
 
@@ -31,32 +34,37 @@ export class RegisterAdThreeComponent implements OnInit {
 
   solutions: any[] = [];
 
+  referencesList: any[] = [];
+
+  references: any[] = [];
+
+  id: string;
+
   constructor(private storage: StorageUtils,
               private authService: AuthService,
               private fb: FormBuilder,
-              private advertService: AdvertService) { }
+              private advertService: AdvertService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
 
-    this.service = new Service();
-    this.service.info = new Info();
-    this.service.otherTaxes = new OtherTaxes();
+    this.route.params.subscribe((param) => {
+      this.id = param['id'];
+    })
 
+    this.service = new Service();
 
     this.form = this.fb.group({
-      price: this.fb.control(this.service.price, [Validators.required]),
-      minimalFootage: this.fb.control(this.service.info.minimalFootage, [Validators.required]),
-      presetationPrice: this.fb.control(this.service.info.presetationPrice, [Validators.required]),
-      visitPrice: this.fb.control(this.service.info.visitPrice, [Validators.required]),
-      name: this.fb.control(this.service.otherTaxes.name, []),
-      solutions: this.fb.control('', []),
-      value: this.fb.control(this.service.otherTaxes.value, []),
-      executionTime: this.fb.control('', [Validators.required]),
-      typology: this.fb.control('', []),
-      restriction: this.fb.control('', []),
+      //comprehensiveness: this.fb.control('', []),
+      category: this.fb.control(this.service.category, [Validators.required]),
+      license: this.fb.control('', []),
+      references: this.fb.control('', []),
     })
 
     this.loadSolutions();
+
+    this.loadReference();
   }
 
   loadSolutions() {
@@ -64,6 +72,69 @@ export class RegisterAdThreeComponent implements OnInit {
       .subscribe(response => {
         this.solutions = response['data'];
         console.log(response)
+      })
+  }
+
+  loadReference() {
+    this.advertService.loadReference()
+      .subscribe(response => {
+        this.references = response['data'];
+      })
+  }
+
+  addComprehensiveness() {
+    if(this.form.get('comprehensiveness').value != '') {
+      this.comprehensivenessList.push(this.form.get('comprehensiveness').value);
+      this.form.get('comprehensiveness').setValue('');
+    }
+  }
+
+  removeComprehensiveness(comprehensiveness) {
+    console.log(comprehensiveness);
+    this.comprehensivenessList = this.comprehensivenessList.filter(t => t != comprehensiveness)
+  }
+
+  addLicense() {
+    console.log(this.licenseList)
+    if(this.form.get('license').value != '') {
+      this.licenseList.push(this.form.get('license').value);
+      this.form.get('license').setValue('');
+    }
+  }
+
+  removeLicense(license) {
+    console.log(license);
+    this.licenseList = this.licenseList.filter(t => t != license)
+  }
+
+  addReferences() {
+    console.log(this.referencesList)
+    if(this.form.get('references').value != '') {
+      this.referencesList.push(this.form.get('references').value);
+      this.form.get('references').setValue('');
+    }
+  }
+
+  removeReferences(reference) {
+    console.log(reference);
+    this.referencesList = this.referencesList.filter(ref => ref.id != reference.id)
+  }
+
+  saveService() {
+
+  //  this.service.comprehensiveness = this.comprehensivenessList;
+    this.service.license = this.licenseList;
+    this.service.references = this.referencesList;
+    this.service.status = 'ACTIVE';
+    this.service.id = this.id;
+
+    this.advertService.saveBasic(this.service)
+      .subscribe(response => {
+        if(response['success']) {
+          Swall('Sucesso', 'Informações salvas com sucesso', 'success');
+        } else {
+           Swall('Erro', 'Não foi possível salvar, verifique e tente novamente', 'error')
+          }
       })
   }
 }

@@ -1,20 +1,20 @@
-<div class="container">
+<div class="container" style="z-index: -9">
   <div class="main__top">
     <div class="row">
-      <div class="col-md-8 col-xl-4 col-sm-4 col-xs-6">
+      <div class="col-md-8 col-xl-8 col-sm-7 col-xs-6">
         <div class="logo">
-          <a [routerLink]="['/']" class="logo__link">
+          <a (click)="goHome()" class="logo__link" style="display: inline-flex; cursor: pointer;">
             <img class="logo__image" src="assets/images/icones/logo-v2.svg" alt="Logo My Building net">
           </a>
         </div>
       </div>
 
-     <div class="col-md-4 col-xl-4 col-sm-4 col-xs-6">
+     <div class="col-md-4 col-xl-4 col-sm-5 col-xs-6">
       <nav class="nav">
-        <ul class="menu">
+        <ul class="menu" style="z-index: -9">
           <li class="menu__item" *ngIf="logged()">
               <div class="drop" style="position: relative; cursor: pointer;" (click)="dropdown.classList.toggle('active')">
-                <a class="menu__link menu__user">Olá {{ getName() }}</a>
+                <a class="menu__link menu__user" style="display: inline-flex;">Olá {{ getName() }}</a>
                <img class="avatar" src="https://ctvalleybrewing.com/wp-content/uploads/2017/04/avatar-placeholder.png" width="50px" height="50px" style="border: 1px solid gray; margin-left: 15px;">
               </div>
 
@@ -23,9 +23,10 @@
                   <a  [routerLink]="['/account']" style="cursor: pointer;">Minha conta</a>
                 </li>
 
+                <!--
                 <li class="dropdown__item">
                   <a  [routerLink]="['/calendar']" style="cursor: pointer;">Calendário</a>
-                </li>
+                </li> -->
 
                 <li class="dropdown__item">
                   <a  [routerLink]="['/adverts']" style="cursor: pointer;">Anúncios</a>
@@ -37,10 +38,10 @@
             </li>
 
           <li class="menu__item" *ngIf="!logged()">
-            <a class="menu__link" [routerLink]="['/cadastre']">Criar conta</a>
+            <a class="menu__link nobreak" [routerLink]="['/cadastre']">Criar conta</a>
           </li>
           <li class="menu__item" *ngIf="!logged()">
-            <a class="menu__link btn btn-round btn-blue" [routerLink]="['/login']">Entrar</a>
+            <a class="menu__link btn btn-round btn-blue bnt-mobile" [routerLink]="['/login']">Entrar</a>
           </li>
         </ul>
       </nav>

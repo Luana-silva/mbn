@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../shared/auth/auth.service';
+import { StorageUtils } from '../../utils/storage-utils';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService,
+              private router: Router,
+              private storage: StorageUtils) { }
 
   ngOnInit() {
   }
 
+  redirectPersonal() {
+    if(this.logged()) {
+      this.router.navigate(['/settings']);
+    }  else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  logged() {
+    return this.storage.getToken();
+  }
 }

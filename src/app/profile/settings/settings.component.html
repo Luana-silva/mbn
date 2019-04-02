@@ -21,11 +21,30 @@
                           <fieldset class="form-group">
                             <label class="label-txt">Linguagem preferencial</label>
                             <select  class="form-control" formControlName="preferredLanguage" [(ngModel)]="setting.preferredLanguage">
-                              <option value="pt">Português</option>
-                              <option value="es">Espanhol</option>
-                              <option value="en">Inglês</option>
-                              <option value="fr">Francês</option>
-                              <option value="it">Italiano</option>
+                                <option *ngFor="let language of languages" [value]="language.value">{{language.name}}</option>
+                            </select>
+                          </fieldset>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <fieldset class="form-group">
+                            <label class="label-txt">Moeda preferencial</label>
+                            <select  class="form-control" formControlName="preferredCurrency" [(ngModel)]="setting.preferredCurrency">
+                                <option *ngFor="let currency of currency" [value]="currency.value">{{currency.name}}</option>
+                            </select>
+                          </fieldset>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <fieldset class="form-group">
+                            <label class="label-txt">Unidade Métrica preferencial</label>
+                            <select  class="form-control" formControlName="preferredUnitySystem" [(ngModel)]="setting.preferredUnitySystem">
+                                <option value="Metric Units">Unidade Métrica</option>
+                                <option value="Imperial Units">Unidade Imperial</option>
                             </select>
                           </fieldset>
                         </div>
@@ -47,13 +66,9 @@
                       <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
                           <fieldset class="form-group">
-                            <label class="label-txt" for="txtStreet">Idiomas</label>
+                            <label class="label-txt">Idiomas</label>
                             <select  class="form-control" multiple formControlName="languages" [(ngModel)]="setting.languages">
-                              <option value="pt">Português</option>
-                              <option value="es">Espanhol</option>
-                              <option value="en">Inglês</option>
-                              <option value="fr">Francês</option>
-                              <option value="it">Italiano</option>
+                                <option *ngFor="let language of languages" [value]="language.value">{{language.name}}</option>
                             </select>
                           </fieldset>
                         </div>
@@ -70,7 +85,11 @@
 
      <div class="form-actions">
         <div class="text-right">
+          <br>
           <button type="submit" class="btn btn-round btn-primary btn-lg" style="display: inline-block;" (click)="saveSettings()" [disabled]="!form.valid">Salvar</button>
+          <br>
+          <br>
+          <br>
         </div>
     </div>
 

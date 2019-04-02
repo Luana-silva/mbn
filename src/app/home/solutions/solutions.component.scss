@@ -1,0 +1,35 @@
+.card {
+    padding: 8px;
+    .card__image {
+        img {
+            width: 100%;
+        }
+    }
+
+    .card__footer {
+        text-align: center;
+        background: #FFF;
+        padding: 10px 2px;
+    }
+
+    .card__name {
+        background: #FFF;
+        padding-bottom: 18px;
+        .card__name__text {
+            font-size: 1.5rem;
+            display: block;
+        }
+    }
+}
+
+.icon-green {
+    color: #3ca7a5;
+    margin: 2px;
+}
+
+
+@media(max-width: 500px) {
+    .main {
+        top: -100px;
+    }
+}
