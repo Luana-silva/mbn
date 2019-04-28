@@ -1,0 +1,99 @@
+<div class="account">
+  <div class="container">
+    <div class="section__header">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0">
+                <h2 class="title-section">Configurações gerais</h2>
+            </div>
+          </div>
+    </div>
+
+    <div class="section__body">
+       <form class="document__form" [formGroup]="form">
+         <div class="row">
+            <div class="col-md-6 col-xs-12 col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-block">
+                    <div class="form-body">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <fieldset class="form-group">
+                            <label class="label-txt">Linguagem preferencial</label>
+                            <select  class="form-control" formControlName="preferredLanguage" [(ngModel)]="setting.preferredLanguage">
+                                <option *ngFor="let language of languages" [value]="language.value">{{language.name}}</option>
+                            </select>
+                          </fieldset>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <fieldset class="form-group">
+                            <label class="label-txt">Moeda preferencial</label>
+                            <select  class="form-control" formControlName="preferredCurrency" [(ngModel)]="setting.preferredCurrency">
+                                <option *ngFor="let currency of currency" [value]="currency.value">{{currency.name}}</option>
+                            </select>
+                          </fieldset>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <fieldset class="form-group">
+                            <label class="label-txt">Unidade Métrica preferencial</label>
+                            <select  class="form-control" formControlName="preferredUnitySystem" [(ngModel)]="setting.preferredUnitySystem">
+                                <option value="Metric Units">Unidade Métrica</option>
+                                <option value="Imperial Units">Unidade Imperial</option>
+                            </select>
+                          </fieldset>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <fieldset class="form-group">
+                            <label class="label-txt">Timezone</label>
+                            <select class="form-control" id="txtName" formControlName="timeZone" [(ngModel)]="setting.timeZone">
+                              <option *ngFor="let t of timezone" [ngValue]="t.value">{{ t.name }}</option>
+                            </select>
+                          </fieldset>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                    <div class="form-body">
+                      <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                          <fieldset class="form-group">
+                            <label class="label-txt">Idiomas</label>
+                            <select  class="form-control" multiple formControlName="languages" [(ngModel)]="setting.languages">
+                                <option *ngFor="let language of languages" [value]="language.value">{{language.name}}</option>
+                            </select>
+                          </fieldset>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+         </div>
+      </form>
+    </div>
+
+     <div class="form-actions">
+        <div class="text-right">
+          <br>
+          <button type="submit" class="btn btn-round btn-primary btn-lg" style="display: inline-block;" (click)="saveSettings()" [disabled]="!form.valid">Salvar</button>
+          <br>
+          <br>
+          <br>
+        </div>
+    </div>
+
+  </div>
+</div>

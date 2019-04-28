@@ -4,13 +4,13 @@ import { NotfoundComponent } from './shared/notfound/notfound.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: '', loadChildren: './home/home.module#HomeModule'},
-  { path: 'cadastre', loadChildren: './cadastre/cadastre.module#CadastreModule'},
-  { path: '', loadChildren: './user/user.module#UserModule'},
-  { path: '', loadChildren: './catalogue/catalogue.module#CatalogueModule'},
-  { path: '', loadChildren: './profile/profile.module#ProfileModule'},
-  { path: '', loadChildren: './calendar/calendar.module#CalendarModule'},
-  { path: '', loadChildren: './adverts/adverts.module#AdvertsModule'},
+  { path: '', loadChildren: './modules/home/home.module#HomeModule'},
+  { path: 'cadastre', loadChildren: './modules/cadastre/cadastre.module#CadastreModule'},
+  { path: '', loadChildren: './modules/user/user.module#UserModule'},
+  { path: '', loadChildren: './modules/catalogue/catalogue.module#CatalogueModule'},
+  { path: '', loadChildren: './modules/profile/profile.module#ProfileModule'},
+  { path: '', loadChildren: './modules/calendar/calendar.module#CalendarModule'},
+  { path: '', loadChildren: './modules/adverts/adverts.module#AdvertsModule'},
   { path: '**', component: NotfoundComponent}
 ];
 

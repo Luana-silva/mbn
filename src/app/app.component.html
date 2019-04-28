@@ -26,6 +26,6 @@
       </div>
     </div>
   </div>
-<router-outlet *ngIf="!routeLoading"></router-outlet>
+<router-outlet *ngIf="!routeLoading" (activate)="onActivate($event)"></router-outlet>
   </div>
 <app-footer></app-footer>

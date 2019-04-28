@@ -1,0 +1,208 @@
+<div class="section">
+  <div class="container">
+    <div class="section__body">
+       <div class="row">
+          <div class="col-md-12">
+            <div class="service-info">
+                <div class="row">
+                  <div class="col-md-7">
+                    <div class="service-info__header">
+                       <div class="row">
+                          <div class="col-md-3">
+                            <div class="service__avatar">
+                               <img class="avatar" src="assets/images/icones/placeholder.png" width="90px" height="90px">
+                            </div>
+                          </div>
+
+                          <div class="col-md-8">
+                            <div class="service-info__personal">
+                               <div class="service-info__personal-text">
+                                  <h3 class="title-personal">{{ service?.userCard?.name }}</h3>
+
+                                  <span class="card-info__label--small">Responde em até 12 horas</span>
+                               </div>
+
+                               <div class="service-info__badges">
+                                 <img class="avatar" src="assets/images/icones/diamond.png" width="60px" height="60px">
+                              </div>
+                            </div>
+                          </div>
+                       </div>
+
+                       <div class="row">
+                         <div class="col-md-10">
+                           <div class="service-info__description">
+                             <p class="service-info__text">
+                               {{ service?.serviceExt?.desc }}
+                              </p>
+                           </div>
+                         </div>
+                       </div>
+
+                       <div class="row">
+                         <div class="col-md-12">
+                            <div class="service-info__actions">
+                               <button class="btn btn-rounded btn-service btn-service--gray" (click)="openMetting()">
+                                 <img src="assets/images/icones/interview.svg" width="25px" alt="Ícone de agendar reunião">
+                                 <span class="btn-span">Agendar reunião</span>
+                              </button>
+
+                              <button class="btn btn-rounded btn-service mt-1" (click)="canTalking()">
+                                <img src="assets/images/icones/chat.svg" width="25px" alt="Ícone de falar com o fornecedor">
+                                <span class="btn-span">Falar com fornecedor</span>
+                             </button>
+                           </div>
+                          </div>
+                       </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                     <div class="service-info__project">
+                        <div class="card-info">
+
+                          <div class="card-info__header">
+                              <h4 class="card-info__title">{{ service?.serviceExt?.name }}</h4>
+                          </div>
+
+                          <div class="card-info__rating">
+                            <span class="card-info__label">{{ service?.totalMessages }} avaliações</span>
+
+                            <div class="card-info__stars">
+                                <i class="fas fa-star icon-green"></i>
+                                <i class="fas fa-star icon-green"></i>
+                                <i class="fas fa-star icon-green"></i>
+                                <i class="fas fa-star icon-green"></i>
+                                <i class="fas fa-star icon-green"></i>
+                            </div>
+                          </div>
+
+                          <div class="card-info__body">
+                             <span class="card-info__label--blue">{{ service?.serviceExt?.addressInfo?.city }}, {{ service?.serviceExt?.addressInfo?.state }} - {{ service?.serviceExt?.addressInfo?.country }}</span>
+
+                             <span class="card-info__label--small">Prazo</span>
+
+                            <span class="card-info__label--blue">15 dias</span>
+                          </div>
+
+                          <div class="card-info__footer">
+                             <span class="card-info__label--small">Valor da cotação</span>
+
+                             <span class="card-info__label--blue">{{ service?.serviceExt?.price | currency: 'BRL': true }}</span>
+
+                             <br>
+                             <button class="btn btn-round btn-blue btn-large btn-center" (click)="canHiring()">Contratar agora</button>
+                          </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+       </div>
+
+       <div class="row">
+         <div class="col-md-11">
+            <div class="service-info__gallery">
+               <div class="gallery">
+                  <div class="gallery__header">
+                    <h4 class="title-small service-desc__title">Fotos</h4>
+                  </div>
+
+                  <div class="gallery__content">
+                     <div class="gallery__photo">
+                        <img class="gallery__image-main" [src]="getImageServicesFeatured(service?.serviceExt?.id, service?.serviceExt?.gallery[0]?.id)" width="100%" alt="">
+                     </div>
+
+                     <div class="gallery__thumbnail">
+                       <ul class="gallery__list flex">
+                          <li class="gallery__item" *ngFor="let image of service?.serviceExt?.gallery">
+                            <img class="gallery__image" [src]="getImageServicesFeatured(service?.serviceExt?.id, image.id)" alt="">
+                          </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+          </div>
+       </div>
+
+       <div class="row">
+         <div class="col-md-12">
+            <div class="service-info__descs">
+               <div class="service-desc">
+                 <div class="service-desc__header">
+                   <h4 class="service-desc__title">Título e Descrição</h4>
+                </div>
+
+                <div class="service-desc__body">
+                  <p class="service-desc__text">
+                    {{ service?.serviceExt?.desc }}
+                  </p>
+               </div>
+              </div>
+
+              <hr>
+
+              <div class="service-desc">
+                <div class="service-desc__header">
+                  <h4 class="service-desc__title">Detalhes do Serviço</h4>
+               </div>
+
+               <div class="service-desc__body">
+                 <p class="service-desc__text">
+                   {{ service?.serviceExt?.info?.detail }}
+                 </p>
+              </div>
+             </div>
+            </div>
+          </div>
+       </div>
+    </div>
+  </div>
+</div>
+<div class="meeting-container" #mettingcontainer>
+    <div class="meeting-box">
+      <a class="btn-link close-section" (click)="closeMetting()">
+          <i class="fas fa-times"></i>
+      </a>
+       <form [formGroup]="form" autocomplete="off">
+          <div class="form-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <fieldset class="form-group">
+                    <label class="label-txt--blue text-center">Motivo da reunião</label>
+
+                    <textarea class="form-control"></textarea>
+                  </fieldset>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                  <fieldset class="form-group">
+                      <label class="label-txt--blue text-center">Escolha uma data e horário</label>
+                          <fieldset class="form-group">
+                            <input type="text" class="form-control" id="txtend" placeholder="DD/MM/YYYY" bsDatepicker [bsConfig]="bsConfig"  formControlName="dateBegin" autocomplete="off">
+                          </fieldset>
+                  </fieldset>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <fieldset class="form-group">
+                        <label class="label-txt--blue text-center">Horário</label>
+                        <select class="form-control">
+                          <option value="teste">Teste</option>
+                        </select>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                      <fieldset class="form-group">
+                          <div class="form-actions text-center">
+                             <button class="btn btn-blue btn-center btn-auto btn-round text-center" style="line-height: 1">Agendar reunião</button>
+                          </div>
+                      </fieldset>
+                    </div>
+              </div>
+            </div>
+       </form>
+    </div>
+</div>

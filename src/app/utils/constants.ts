@@ -1,3 +1,4 @@
+import { ImageCropperModel } from 'ng2-img-cropper/src/model/imageCropperModel';
 
 export class Constants {
 
@@ -8,9 +9,9 @@ export class Constants {
     //Cloud
   public static get SERVICE_URL(): string { return "http://cloud.mbn.mangotest.com"; };
 
-  // public static get SERVICE_URL(): string { return "http://192.168.123.10:8008"; };
+ // public static get SERVICE_URL(): string { return "http://192.168.123.10:8008"; };
 
-  // public static get SERVICE_URL_BLOG(): string { return "http://blog.mbn.mangotest.com"; };
+  public static get SERVICE_URL_BLOG(): string { return "http://blog.mbn.mangotest.com"; };
 
   //public static get SERVICE_URL(): string { return "http://mangobits.servebeer.com:8080"; };
 
@@ -25,3 +26,4 @@ export class Constants {
     //static readonly DATE_FMT = 'dd/MM/yyyy';
     //static readonly DATE_TIME_FMT = `${Constants.DATE_FMT} hh:mm:ss`;
   }
+

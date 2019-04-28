@@ -1,0 +1,54 @@
+<div class="section">
+  <form [formGroup]="form">
+  <div class="container">
+    <div class="section__body">
+       <div class="row">
+           <div class="col-md-10 col-md-offset-1">
+              <div class="mb-3">
+                <h2 class="h3 title-blue">Envie uma mensagem para o Especialista</h2>
+              </div>
+           </div>
+
+           <div class="col-md-10 col-md-offset-1 mart-8">
+                  <div class="message-infouser">
+                      <div class="row flex flex-bottom flex-sm">
+                         <div class="col-md-2 col-sm-12 col-xs-12 border-r border-xs-hidde">
+                            <div class="message-infouser__avatar">
+                               <img class="avatar avatar-t" width="70px" height="70px" *ngIf="imageUser" [src]="imageUser" alt="">
+                               <img class="avatar ml-2"style="margin-left: 25px" width="100px" height="100px" src="assets/images/icones/topscored.png" alt="">
+                             </div>
+                         </div>
+                         <div class="col-md-6 col-sm-12 col-xs-12">
+                            
+                         <div class="message-infouser__info">
+                            <span class="blockquote h3 block bolder">{{ service?.userCard?.name }}</span>
+                            <!--<span class="text h5 block">Gerente de compras</span>-->
+                            <span class="text h5 block">{{ service?.company?.fantasyName }}</span>
+                            <span class="text h5 block" *ngIf="!service.company.fantasyName">Não informado</span>
+                        </div>
+                         </div>
+                         <div class="col-md-4 col-sm-12 col-xs-12">
+                            <div class="message-option">
+                                <select class="form-control" formControlName="modelOption" (change)="setModel()">
+                                    <option  value="">Buscar modelo</option>
+                                  <option  *ngFor="let model of listModels" [ngValue]="model">{{ model.title }}</option>
+                                </select>
+                              </div>
+                         </div>
+                      </div>
+                   </div>
+           </div>
+           <div class="col-md-10 col-md-offset-1 mart-4 mt-4">
+              <div class="message mt-3">
+                  <textarea class="form-control mb-4" rows="10" placeholder="Explique as características do projeto" formControlName="model"></textarea>
+               </div>
+
+               <div class="form-action">
+                  <button [disabled]="form.invalid" (click)="faqSave()" class="text-right btn btn-round btn-blue btn-auto mart-4" style="line-height: 1">Enviar mensagem</button>
+               </div>
+           </div>
+        </div>
+    </div>
+  </div>
+</form>
+</div>

@@ -1,0 +1,123 @@
+.account {
+  padding-bottom: 30px;
+}
+
+.card-avatar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.document__avatar {
+  margin-right: 20px;
+}
+
+.label-document {
+  color: #3e85bd;
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.label-txt,
+.label-link {
+  font-size: 1.6rem;
+  color: #707070;
+  font-weight: 300;
+  display: block;
+}
+
+.label-link {
+  font-weight: bolder;
+}
+
+.label-txt--blue {
+  color: #3e85bd;
+}
+
+.input-add {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zipcode {
+  display: flex;
+}
+
+.skills {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skills__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-textarea {
+  resize: none;
+  height: 250px;
+}
+
+input[type="file"] {
+  display: none !important;
+}
+
+.ng2-imgcrop input[type="file"] {
+  display: none !important;
+}
+
+.align-input {
+  margin-top: 24px;
+}
+
+@media(max-width: 1200px) {
+  .align-input {
+    margin-top: 46px !important;
+  }
+}
+
+.meeting-container {
+  background: rgba(0, 0, 0, .5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  transform: scale(0);
+  transition: .4s;
+}
+
+.meeting-container.active {
+  transform: scale(1);
+}
+
+.meeting-box {
+  width: 40%;
+  margin-right: auto;
+  margin-lefT: auto;
+  background: #FFF;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.close-section {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  color: #FFF;
+  font-size: 4rem;
+  cursor: pointer;
+}
+
+@media(max-width: 780px) {
+  .meeting-box {
+    width: 90%;
+  }
+}

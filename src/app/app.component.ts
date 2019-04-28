@@ -21,11 +21,16 @@ export class AppComponent {
 
       if (event instanceof NavigationEnd ||
         event instanceof NavigationCancel ||
-        event instanceof NavigationError) 
-      {
+        event instanceof NavigationError) {
           this.routeLoading = false;
           //console.log(event.url);
       }
     });
-  }
+  } 
+
+  onActivate(event) {
+    window.scroll(0,0);
+    //or document.body.scrollTop = 0;
+    //or document.querySelector('body').scrollTo(0,0)
+}
 }

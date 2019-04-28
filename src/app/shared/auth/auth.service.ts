@@ -34,6 +34,13 @@ export class AuthService {
          .pipe(map(response => response));
     }
 
+    isLoggedIn(): boolean {
+      if(this.storage.getUser()) {
+        return true;
+      }
+      return false;
+    } 
+    
     logout() {
       localStorage.clear();
       this.router.navigate(['login']);

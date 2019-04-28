@@ -1,0 +1,222 @@
+<div class="account">
+  <div class="container">
+    <div class="section__header">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0">
+                <h2 class="title-section">Novo anúncio</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-md-offset-0">
+                <div class="section__menu">
+                  <ul class="menu-ad">
+                    <li class="menu-ad__item">
+                      <a class="menu-ad__link active">Configurações de preço</a>
+                    </li>
+
+                    <li class="menu-ad__item">
+                      <a class="menu-ad__link">Detalhes do anúncio</a>
+                    </li>
+
+                    <li class="menu-ad__item">
+                      <a class="menu-ad__link">Abrangência</a>
+                    </li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section__body">
+       <form class="document__form" [formGroup]="form">
+         <div class="row">
+           <div class="col-md-6 col-xs-12 col-sm-12" style="margin-top: 30px;">
+             <div class="card">
+               <div class="card-header">
+                 <h4 class="card-title mb-0 label-document">Valor do serviço</h4>
+               </div>
+               <div class="card-body">
+                 <div class="card-block">
+
+                   <div class="form-body">
+                     <div class="row">
+                       <div class="col-md-12">
+                         <fieldset class="form-group">
+                           <label class="label-txt" for="txtComplement">R$/M<sup>2</sup></label>
+                           <input type="text" class="form-control" formControlName="price" [(ngModel)]="service.price" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+                         </fieldset>
+                       </div>
+                   </div>
+
+                     <div class="row">
+                       <div class="col-md-12">
+                         <fieldset class="form-group">
+                           <label class="label-txt" for="txtComplement">Mensagem mínima</label>
+                           <input type="text" class="form-control" formControlName="minimalFootage" [(ngModel)]="service.info.minimalFootage" currencyMask [options]="{ prefix: 'M² ', thousands: '.', decimal: ',' }">
+                         </fieldset>
+                       </div>
+                    </div>
+
+                        <div class="card-header">
+                          <h4 class="card-title mb-0 label-document">Valores de Serviços adicionais</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="card-block">
+
+                            <div class="form-body">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <fieldset class="form-group">
+                                    <label class="label-txt" for="txtComplement">Reunião de apresentação</label>
+                                    <input type="text" class="form-control" formControlName="presetationPrice" [(ngModel)]="service.info.presetationPrice" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+                                  </fieldset>
+                                </div>
+                            </div>
+
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <fieldset class="form-group">
+                                    <label class="label-txt" for="txtComplement">Visita técnica</label>
+                                    <input type="text" class="form-control" formControlName="visitPrice" [(ngModel)]="service.info.visitPrice" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+                                  </fieldset>
+                                </div>
+                             </div>
+
+                             <div class="row">
+                               <div class="col-md-12">
+                                 <fieldset class="form-group">
+                                   <label class="label-txt" style="height: 5px;">Outra taxa ou desconto</label>
+                                 </fieldset>
+                               </div>
+                               <div class="col-md-9 col-sm-9 col-xs-9">
+                                 <fieldset class="form-group">
+                                   <input type="text" class="form-control" formControlName="name"  [(ngModel)]="service.otherTaxes.name" placeholder="Nome">
+                                 </fieldset>
+                               </div>
+
+                               <div class="col-md-3 col-sm-3 col-xs-3">
+                                 <fieldset class="form-group">
+                                   <input type="text" class="form-control" formControlName="value" [(ngModel)]="service.otherTaxes.value" placeholder="Valor" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+                                 </fieldset>
+                               </div>
+                             </div>
+
+                            </div>
+                          </div>
+                        </div>
+
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+
+           <div class="col-md-6 col-xs-12 col-sm-12" style="margin-top: 30px;">
+             <div class="card">
+               <div class="card-header">
+                 <h4 class="card-title mb-0 label-document">Prazo</h4>
+               </div>
+               <div class="card-body">
+                 <div class="card-block">
+
+                   <div class="form-body">
+                     <div class="row">
+                       <div class="col-md-6">
+                         <fieldset class="form-group">
+                           <label class="label-txt" for="txtComplement">Dias</label>
+                           <input type="text" class="form-control" formControlName="executionTime" [(ngModel)]="service.executionTime" mask="0*">
+                         </fieldset>
+                       </div>
+                   </div>
+
+                   </div>
+                 </div>
+               </div>
+             </div>
+
+             <div class="card">
+               <div class="card-header">
+                 <h4 class="card-title mb-0 label-document" style="height: 12px;margin-top: 5px;">Tipologia Construtiva</h4>
+               </div>
+               <div class="card-body">
+                 <div class="card-block">
+
+                   <div class="form-body">
+                     <div class="row">
+                       
+
+                       <div class="col-md-12">
+                         <fieldset class="form-group">
+                           <div class="input-add">
+                             <input type="text" class="form-control" id="txtName" formControlName="typology" placeholder="Digite aqui a tipologia construtiva referente ao serviço">
+                             <a style="margin-left: 8px; cursor: pointer;" (click)="addTypologies()"><img src="assets/images/icones/plus.png" alt="Icon plus"></a>
+                           </div>
+                         </fieldset>
+                      </div>
+
+                      <div class="col-md-12">
+                          <fieldset class="form-group">
+                            <ul class="skills" *ngIf="typologies">
+                              <li class="skills__item" *ngFor="let typology of typologies">
+                                <span class="label-txt">{{ typology }}</span>
+                                <a class="icon-cursor"><img src="assets/images/icones/trashcan.png" (click)="removeTypologies(typology)" alt="ìcone trash" width="18px"></a>
+                              </li>
+                            </ul>
+                          </fieldset>
+                        </div>
+                   </div>
+
+                   </div>
+                 </div>
+               </div>
+             </div>
+
+             <div class="card">
+               <div class="card-header">
+                 <h4 class="card-title mb-0 label-document" style="margin-top: 22px;">Restrição</h4>
+               </div>
+               <div class="card-body">
+                 <div class="card-block">
+
+                   <div class="form-body">
+                     <div class="row">
+                       <div class="col-md-12">
+                         <fieldset class="form-group">
+                           <div class="input-add">
+                             <input type="text" class="form-control" id="txtName" formControlName="restriction" placeholder="Digite aqui restrições referentes ao serviço">
+                             <a style="margin-left: 8px; cursor: pointer;" (click)="addRestrictions()"><img src="assets/images/icones/plus.png" alt="Icon plus"></a>
+                           </div>
+                         </fieldset>
+                      </div>
+
+                      <div class="col-md-12">
+                          <fieldset class="form-group">
+                            <ul class="skills" *ngIf="restrictions">
+                              <li class="skills__item" *ngFor="let restriction of restrictions">
+                                <span class="label-txt">{{ restriction }}</span>
+                                <a class="icon-cursor"><img src="assets/images/icones/trashcan.png" alt="ìcone trash" width="18px" (click)="removeRestrictions(restriction)"></a>
+                              </li>
+                            </ul>
+                          </fieldset>
+                        </div>
+
+                   </div>
+
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+
+      </form>
+    </div>
+
+    <div class="form-actions">
+        <div class="text-right">
+          <button type="submit" class="btn btn-round btn-primary btn-lg" style="display: inline-block;" (click)="saveService()" [disabled]="!form.valid">Próximo</button>
+        </div>
+    </div>
+  </div>
+</div>

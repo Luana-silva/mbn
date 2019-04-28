@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg31"
+   version="1.1"
+   viewBox="0 0 8268 11692"
+   style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd"
+   height="11.6929in"
+   width="8.26772in"
+   xml:space="preserve"><metadata
+     id="metadata35"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+     id="defs4"><style
+       id="style2"
+       type="text/css"><![CDATA[
+    .str0 {stroke:#FFFFFF;stroke-width:222}
+    .fil0 {fill:none}
+    .fil1 {fill:#FFFFFF}
+   ]]></style></defs><g
+     id="Layer 1"><circle
+       id="circle6"
+       r="3287"
+       cy="5845"
+       cx="3961"
+       class="fil0 str0" /><g
+       id="g10"><path
+         id="path8"
+         d="M3342 2685c-698,1036 -1041,2081 -1031,3135l-222 2c-11,-1100 345,-2186 1068,-3260l185 123zm-1031 3135c11,1055 376,2123 1096,3205l-185 121c-744,-1117 -1122,-2225 -1133,-3324l222 -2z"
+         class="fil1" /></g><g
+       id="g14"><path
+         id="path12"
+         d="M4473 2685c698,1036 1041,2081 1031,3135l222 2c11,-1100 -345,-2186 -1068,-3260l-185 123zm1031 3135c-11,1055 -377,2123 -1097,3205l186 121c744,-1117 1122,-2225 1133,-3324l-222 -2z"
+         class="fil1" /></g><path
+       id="path16"
+       d="M3961 2558l0 6574"
+       class="fil0 str0" /><g
+       id="g20"><path
+         id="path18"
+         d="M674 5734l6574 0 0 222 -6574 0 0 -222z"
+         class="fil1" /></g><g
+       id="g24"><path
+         id="path22"
+         d="M1166 4034l5590 0 0 222 -5590 0 0 -222z"
+         class="fil1" /></g><g
+       id="g28"><path
+         id="path26"
+         d="M1081 7334l5760 0 0 223 -5760 0 0 -223z"
+         class="fil1" /></g></g></svg>

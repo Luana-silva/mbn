@@ -5,5 +5,11 @@ export class Str {
       
         return strAux.toLowerCase();
       }
+
+      static Destructuring(str) {
+        const strAux = str.split('-').join(' ');
+
+        return strAux;
+      }
 }
 

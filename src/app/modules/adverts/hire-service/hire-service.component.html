@@ -1,0 +1,785 @@
+<div class="account">
+    <div class="container">
+      <div class="section__header">
+          <div class="row">
+              <div class="col-md-12 col-md-offset-0">
+                  <h2 class="title-section">Contratando</h2>
+              </div>
+          </div>
+      </div>
+      
+      <div class="">
+         <div class="row">
+           <div class="col-md-11">
+             <div class="section-steps">
+                <div class="step step-one" #tabStepOne>
+                    <span class="border-step border-step-one border-step--active"></span>
+                    <span class="number-step number-step-one number-step--active">1</span>
+                  </div>
+         
+                  <div class="step step-two" #tabStepTwo>
+                   <span class="border-step border-step-two"></span>
+                   <span class="number-step number-step-two">2</span>
+                 </div>
+         
+                 <div class="step step-three" #tabStepThree>
+                   <span class="border-step border-step-three"></span>
+                   <span class="number-step number-step-three">3</span>
+                 </div>
+             </div>
+           </div>
+         </div>
+      </div>
+      <div class="section__body">
+         <form class="document__form" [formGroup]="form" autocomplete="off">
+           <div class="row">
+              <div class="col-md-6 col-xs-12 col-sm-12" #stepOne *ngIf="showStepOne">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="card-block">
+                      <div class="form-body">
+                        <div class="row">
+                            <div class="row flex flex-top">
+                                <div class="col-md-3 border-r">
+                                   <div class="message-infouser__avatar">
+                                      <img class="avatar avatar-t" width="70px" height="70px" *ngIf="imageUser" [src]="imageUser" alt="">
+                                      <img class="avatar ml-2" style="margin-left: 25px" width="100px" height="100px" [src]="getCompanyImage(service.company.id)" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                   
+                                <div class="message-infouser__info">
+                                    <div class="card-info__stars" style="margin-left: 0;">
+                                        <i class="fas fa-star icon-green"></i>
+                                        <i class="fas fa-star icon-green"></i>
+                                        <i class="fas fa-star icon-green"></i>
+                                        <i class="fas fa-star icon-green"></i>
+                                        <i class="fas fa-star icon-green"></i>
+                                    </div>
+                                   <span class="blockquote h3 block bolder" style="margin-top: 5px">{{ service?.userCard?.name }}</span>
+                                   <!--<span class="text h5 block">Gerente de compras</span>-->
+                                   <span class="text h5 block" *ngIf="service.company.fantasyName">{{ service?.company?.fantasyName }}</span>
+                                   <span class="text h5 block" *ngIf="!service.company.fantasyName">Não informado</span>
+                               </div>
+                                </div>
+                            </div>
+                          <div class="col-md-12 mart-8" style="height: 28px;">
+                            <fieldset class="form-group">
+                              <label class="label-txt">Telefone</label>
+                            </fieldset>
+                          </div>
+                      
+                          <div class="col-md-12 col-sm-12 col-xs-12">
+                            <fieldset class="form-group">
+                              <!--<input type="text" class="form-control" formControlName="phoneNumber" [(ngModel)]="register.user.phoneNumber"> -->
+                              <intl-input-phone [ConfigurationOption]="configOption1" [NumberTextValue]="NumberModel" (OnNumberChange)="onNumberChage2($event)"></intl-input-phone>
+                            </fieldset>
+                          </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                              <fieldset class="form-group">
+                                <label class="label-txt">Nome do projeto</label>
+                                <input type="text" class="form-control" formControlName="projectName" [(ngModel)]="booking.info.projectName">
+                                <small class="form-text text-muted danger"
+                                    *ngIf="!form.get('projectName').valid && (form.get('projectName').dirty || form.get('projectName').touched)">
+                                        Campo obrigatório
+                                  </small>
+                              </fieldset>
+                            </div>
+                          </div>
+
+                        <div class="row">
+                          <div class="col-md-12">
+                            <fieldset class="form-group">
+                              <label class="label-txt">Endereço onde vai ser executado o serviço</label>
+                              <input type="text" class="form-control" formControlName="projectAddress" [(ngModel)]="booking.info.projectAddress">
+                              <small class="form-text text-muted danger"
+                                  *ngIf="!form.get('projectAddress').valid && (form.get('projectAddress').dirty || form.get('projectAddress').touched)">
+                                      Campo obrigatório
+                                </small>
+                            </fieldset>
+                          </div>
+                        </div>
+                        
+                        
+                        <div class="row">
+                            <div class="col-md-12" style="height: 28px;">
+                                <fieldset class="form-group">
+                                    <label class="label-txt">Áreas totais aproximadas do projeto</label>
+                                </fieldset>
+                              </div>
+                            <div class="col-md-6">
+                              <fieldset class="form-group">
+                                <input type="text" class="form-control" formControlName="terrain" [(ngModel)]="booking.info.terrain" placeholder="Contruída" mask="00000000">
+                                <small class="form-text text-muted danger"
+                                    *ngIf="!form.get('terrain').valid && (form.get('terrain').dirty || form.get('terrain').touched)">
+                                        Campo obrigatório
+                                  </small>
+                              </fieldset>
+                            </div>
+
+                            <div class="col-md-6">
+                                <fieldset class="form-group">
+                                  <input type="text" class="form-control" formControlName="constructed" [(ngModel)]="booking.info.constructed" placeholder="Terreno" mask="00000000">
+                                  <small class="form-text text-muted danger"
+                                      *ngIf="!form.get('constructed').valid && (form.get('constructed').dirty || form.get('constructed').touched)">
+                                          Campo obrigatório
+                                    </small>
+                                </fieldset>
+                              </div>
+                          </div>
+
+                          <div class="row">
+                              <div class="col-md-6">
+                                <fieldset class="form-group">
+                                  <label class="label-txt">Tipologia</label>
+                                  <input type="text" class="form-control" formControlName="tipology" [(ngModel)]="booking.info.tipology">
+                                  <small class="form-text text-muted danger"
+                                      *ngIf="!form.get('tipology').valid && (form.get('tipology').dirty || form.get('tipology').touched)">
+                                          Campo obrigatório
+                                    </small>
+                                </fieldset>
+                              </div>
+
+                              <div class="col-md-6">
+                                <fieldset class="form-group">
+                                  <label class="label-txt">Data de início</label>
+                                  <input type="text" class="form-control" id="txtend" placeholder="DD/MM/YYYY" bsDatepicker [bsConfig]="bsConfig" [(ngModel)]="booking.dateBegin" formControlName="dateBegin" [autocomplete]="off">
+                                  <small class="form-text text-muted danger"
+                                      *ngIf="!form.get('dateBegin').valid && (form.get('dateBegin').dirty || form.get('dateBegin').touched)">
+                                          Campo obrigatório
+                                    </small>
+                                </fieldset>
+                              </div>
+                            </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-6 col-xs-12 col-sm-12" #stepTwo *ngIf="showStepTwo">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="card-block">
+                      <div class="form-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <fieldset class="form-group">
+                              <label class="label-txt--blue">Requisítos para a contratação</label>
+
+                              <p class="blockquote">
+                                Atuo há 12 anos em projetos de estruturas.<br>
+                                Formado pela universidade número 1, com especialização
+                                em projetos estruturais.
+                              </p>
+                            </fieldset>
+                          </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                              <fieldset class="form-group">
+                                <label class="label-txt--blue">Documentos para a contratação</label>
+                                <br><br>
+                              </fieldset>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-xs-12 col-sm-12" #stepThree *ngIf="showStepThree">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="card-block">
+                      <div class="form-body">
+                          <div class="row">
+                              <div class="col-md-12 col-md-offset-0">
+                                  <h2 class="title-section">Insira os dados de Pagamento</h2>
+                              </div>
+                          </div>
+                          
+                        <div class="row">
+                          <div class="col-md-12" style="height: 28px;">
+                            <fieldset class="form-group">
+                              <label class="label-txt">Número do cartão</label>
+                            </fieldset>
+                          </div>
+                      
+                          <div class="col-md-12 col-sm-12 col-xs-12">
+                            <fieldset class="form-group">
+                              <input type="text" class="form-control" formControlName="number" [(ngModel)]="booking.card.number">
+                              <small class="form-text text-muted danger"
+                                    *ngIf="!form.get('number').valid && (form.get('number').dirty || form.get('number').touched)">
+                                        Campo obrigatório
+                                  </small>
+                            </fieldset>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-6">
+                            <fieldset class="form-group">
+                              <label class="label-txt">Mês de vencimento</label>
+
+                              <input type="text" class="form-control" formControlName="expirationMonth" [(ngModel)]="booking.card.expirationMonth" placeholder="MM" mask="00">
+                              <small class="form-text text-muted danger"
+                                    *ngIf="!form.get('expirationMonth').valid && (form.get('expirationMonth').dirty || form.get('expirationMonth').touched)">
+                                        Campo obrigatório
+                              </small>
+                            </fieldset>
+                          </div>
+                      
+                          <div class="col-md-6 col-sm-6 col-xs-6">
+                            <fieldset class="form-group">
+                              <label class="label-txt">Ano de vencimento</label>
+                              <input type="text" class="form-control" formControlName="expirationYear" [(ngModel)]="booking.card.expirationYear" placeholder="YYYY" mask="0000">
+                              <small class="form-text text-muted danger"
+                                    *ngIf="!form.get('expirationYear').valid && (form.get('expirationYear').dirty || form.get('expirationYear').touched)">
+                                        Campo obrigatório
+                              </small>
+                            </fieldset>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                              <fieldset class="form-group">
+                                <label class="label-txt">Nome impresso no cartão</label>
+  
+                                <input type="text" class="form-control" formControlName="name" [(ngModel)]="booking.card.name">
+                                <small class="form-text text-muted danger"
+                                      *ngIf="!form.get('name').valid && (form.get('name').dirty || form.get('name').touched)">
+                                          Campo obrigatório
+                                </small>
+                              </fieldset>
+                            </div>
+                        </div>
+
+                        
+                        <div class="row">
+                            <div class="col-md-8">
+                              <fieldset class="form-group">
+                                <label class="label-txt">CPF/CNPJ do proprietário do cartão</label>
+  
+                                <input type="text" class="form-control" formControlName="cpf" [(ngModel)]="booking.card.cpf" mask="000.000.000-00">
+                                <small class="form-text text-muted danger"
+                                      *ngIf="!form.get('cpf').valid && (form.get('cpf').dirty || form.get('cpf').touched)">
+                                          Campo obrigatório
+                                </small>
+                              </fieldset>
+                            </div>
+
+                            <div class="col-md-4">
+                                <fieldset class="form-group">
+                                  <label class="label-txt">Cod. segurança</label>
+    
+                                  <input type="text" class="form-control" formControlName="ccv" [(ngModel)]="booking.card.ccv" placeholder="CCV" mask="000">
+                                  <small class="form-text text-muted danger"
+                                        *ngIf="!form.get('ccv').valid && (form.get('ccv').dirty || form.get('ccv').touched)">
+                                            Campo obrigatório
+                                  </small>
+                                </fieldset>
+                              </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12" style="margin-top: 8px">
+                              <fieldset class="form-group flex flex-center">
+                                <div class="flex flex-center">
+                                    <input type="checkbox"  id="saveDataCard" formControlName="saveDataCard" style="width: 15px" >
+                                    <label for="saveDataCard" class="custom-checkbox"></label>
+                                    <label class="label-txt" style="width: 80%">Salvar este cartão para pagamentos futuros</label>
+                                </div>
+                              </fieldset>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                      <div class="card-block">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-12 col-md-offset-0">
+                                    <h2 class="title-section">Endereço de cobrança do cartão</h2>
+                                </div>
+                            </div>
+                            
+                          <div class="row">
+                            <div class="col-md-12" style="height: 28px;">
+                              <fieldset class="form-group">
+                                <label class="label-txt">CEP</label>
+                              </fieldset>
+                            </div>
+                        
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                              <fieldset class="form-group">
+                                <input type="text" class="form-control" formControlName="zipCode" [(ngModel)]="booking.card.address.zipCode" (blur)="returnAddress()">
+                                <small class="form-text text-muted danger"
+                                      *ngIf="!form.get('zipCode').valid && (form.get('zipCode').dirty || form.get('zipCode').touched)">
+                                          Campo obrigatório
+                                    </small>
+                              </fieldset>
+                            </div>
+                          </div>
+  
+                          <div class="row">
+                            <div class="col-md-12">
+                              <fieldset class="form-group">
+                                <label class="label-txt">Endereço</label>
+  
+                                <input type="text" class="form-control" formControlName="street" [(ngModel)]="booking.card.address.street">
+                                <small class="form-text text-muted danger"
+                                      *ngIf="!form.get('street').valid && (form.get('street').dirty || form.get('street').touched)">
+                                          Campo obrigatório
+                                </small>
+                              </fieldset>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                              <fieldset class="form-group">
+                                <label class="label-txt">Bairro</label>
+                                <input type="text" class="form-control" formControlName="district" [(ngModel)]="booking.card.address.district">
+                                <small class="form-text text-muted danger"
+                                      *ngIf="!form.get('district').valid && (form.get('district').dirty || form.get('district').touched)">
+                                          Campo obrigatório
+                                </small>
+                              </fieldset>
+                            </div>
+                          </div>
+  
+                          <div class="row">
+                              <div class="col-md-12">
+                                <fieldset class="form-group">
+                                  <label class="label-txt">Cidade</label>
+    
+                                  <input type="text" class="form-control" formControlName="city" [(ngModel)]="booking.card.address.city">
+                                  <small class="form-text text-muted danger"
+                                        *ngIf="!form.get('city').valid && (form.get('city').dirty || form.get('city').touched)">
+                                            Campo obrigatório
+                                  </small>
+                                </fieldset>
+                              </div>
+                          </div>
+  
+                          
+                          <div class="row">
+                              <div class="col-md-6">
+                                <fieldset class="form-group">
+                                  <label class="label-txt">Estado</label>
+    
+                                  <select class="form-control" formControlName="state" [(ngModel)]="booking.card.address.state">
+                                      <option value="AC">Acre</option>
+                                      <option value="AL">Alagoas</option>
+                                      <option value="AP">Amapá</option>
+                                      <option value="AM">Amazonas</option>
+                                      <option value="BA">Bahia</option>
+                                      <option value="CE">Ceará</option>
+                                      <option value="DF">Distrito Federal</option>
+                                      <option value="ES">Espírito Santo</option>
+                                      <option value="GO">Goiás</option>
+                                      <option value="MA">Maranhão</option>
+                                      <option value="MS">Mato Grosso do Sul</option>
+                                      <option value="MG">Minas Gerais</option>
+                                      <option value="PA">Pará</option>
+                                      <option value="PB">Paraíba</option>
+                                      <option value="PR">Paraná</option>
+                                      <option value="PE">Pernambuco</option>
+                                      <option value="PI">Piauí</option>
+                                      <option value="RJ">Rio de Janeiro</option>
+                                      <option value="RN">Rio Grande do Norte</option>
+                                      <option value="RS">Rio Grande do Sul</option>
+                                      <option value="RO">Rondônia</option>
+                                      <option value="RR">Roraima</option>
+                                      <option value="SC">Santa Catarina</option>
+                                      <option value="SP">São Paulo</option>
+                                      <option value="SE">Sergipe</option>
+                                      <option value="TO">Tocantins</option>
+        
+                                    </select>
+                                  <small class="form-text text-muted danger"
+                                        *ngIf="!form.get('state').valid && (form.get('state').dirty || form.get('state').touched)">
+                                            Campo obrigatório
+                                  </small>
+                                </fieldset>
+                              </div>
+  
+                              <div class="col-md-6">
+                                  <fieldset class="form-group">
+                                    <label class="label-txt">País</label>
+      
+                                    <select  class="form-control" formControlName="country" [(ngModel)]="booking.card.address.country">
+                                        <option value="África do Sul">África do Sul</option>
+                                        <option value="Albânia">Albânia</option>
+                                        <option value="Alemanha">Alemanha</option>
+                                        <option value="Andorra">Andorra</option>
+                                        <option value="Angola">Angola</option>
+                                        <option value="Anguilla">Anguilla</option>
+                                        <option value="Antigua">Antigua</option>
+                                        <option value="Arábia Saudita">Arábia Saudita</option>
+                                        <option value="Argentina">Argentina</option>
+                                        <option value="Armênia">Armênia</option>
+                                        <option value="Aruba">Aruba</option>
+                                        <option value="Austrália">Austrália</option>
+                                        <option value="Áustria">Áustria</option>
+                                        <option value="Azerbaijão">Azerbaijão</option>
+                                        <option value="Bahamas">Bahamas</option>
+                                        <option value="Bahrein">Bahrein</option>
+                                        <option value="Bangladesh">Bangladesh</option>
+                                        <option value="Barbados">Barbados</option>
+                                        <option value="Bélgica">Bélgica</option>
+                                        <option value="Benin">Benin</option>
+                                        <option value="Bermudas">Bermudas</option>
+                                        <option value="Botsuana">Botsuana</option>
+                                        <option value="Brasil" selected>Brasil</option>
+                                        <option value="Brunei">Brunei</option>
+                                        <option value="Bulgária">Bulgária</option>
+                                        <option value="Burkina Fasso">Burkina Fasso</option>
+                                        <option value="botão">botão</option>
+                                        <option value="Cabo Verde">Cabo Verde</option>
+                                        <option value="Camarões">Camarões</option>
+                                        <option value="Camboja">Camboja</option>
+                                        <option value="Canadá">Canadá</option>
+                                        <option value="Cazaquistão">Cazaquistão</option>
+                                        <option value="Chade">Chade</option>
+                                        <option value="Chile">Chile</option>
+                                        <option value="China">China</option>
+                                        <option value="Cidade do Vaticano">Cidade do Vaticano</option>
+                                        <option value="Colômbia">Colômbia</option>
+                                        <option value="Congo">Congo</option>
+                                        <option value="Coréia do Sul">Coréia do Sul</option>
+                                        <option value="Costa do Marfim">Costa do Marfim</option>
+                                        <option value="Costa Rica">Costa Rica</option>
+                                        <option value="Croácia">Croácia</option>
+                                        <option value="Dinamarca">Dinamarca</option>
+                                        <option value="Djibuti">Djibuti</option>
+                                        <option value="Dominica">Dominica</option>
+                                        <option value="EUA">EUA</option>
+                                        <option value="Egito">Egito</option>
+                                        <option value="El Salvador">El Salvador</option>
+                                        <option value="Emirados Árabes">Emirados Árabes</option>
+                                        <option value="Equador">Equador</option>
+                                        <option value="Eritréia">Eritréia</option>
+                                        <option value="Escócia">Escócia</option>
+                                        <option value="Eslováquia">Eslováquia</option>
+                                        <option value="Eslovênia">Eslovênia</option>
+                                        <option value="Espanha">Espanha</option>
+                                        <option value="Estônia">Estônia</option>
+                                        <option value="Etiópia">Etiópia</option>
+                                        <option value="Fiji">Fiji</option>
+                                        <option value="Filipinas">Filipinas</option>
+                                        <option value="Finlândia">Finlândia</option>
+                                        <option value="França">França</option>
+                                        <option value="Gabão">Gabão</option>
+                                        <option value="Gâmbia">Gâmbia</option>
+                                        <option value="Gana">Gana</option>
+                                        <option value="Geórgia">Geórgia</option>
+                                        <option value="Gibraltar">Gibraltar</option>
+                                        <option value="Granada">Granada</option>
+                                        <option value="Grécia">Grécia</option>
+                                        <option value="Guadalupe">Guadalupe</option>
+                                        <option value="Guam">Guam</option>
+                                        <option value="Guatemala">Guatemala</option>
+                                        <option value="Guiana">Guiana</option>
+                                        <option value="Guiana Francesa">Guiana Francesa</option>
+                                        <option value="Guiné-bissau">Guiné-bissau</option>
+                                        <option value="Haiti">Haiti</option>
+                                        <option value="Holanda">Holanda</option>
+                                        <option value="Honduras">Honduras</option>
+                                        <option value="Hong Kong">Hong Kong</option>
+                                        <option value="Hungria">Hungria</option>
+                                        <option value="Iêmen">Iêmen</option>
+                                        <option value="Ilhas Cayman">Ilhas Cayman</option>
+                                        <option value="Ilhas Cook">Ilhas Cook</option>
+                                        <option value="Ilhas Curaçao">Ilhas Curaçao</option>
+                                        <option value="Ilhas Marshall">Ilhas Marshall</option>
+                                        <option value="Ilhas Turks & Caicos">Ilhas Turks & Caicos</option>
+                                        <option value="Ilhas Virgens (brit.)">Ilhas Virgens (brit.)</option>
+                                        <option value="Ilhas Virgens(amer.)">Ilhas Virgens(amer.)</option>
+                                        <option value="Ilhas Wallis e Futuna">Ilhas Wallis e Futuna</option>
+                                        <option value="Índia">Índia</option>
+                                        <option value="Indonésia">Indonésia</option>
+                                        <option value="Inglaterra">Inglaterra</option>
+                                        <option value="Irlanda">Irlanda</option>
+                                        <option value="Islândia">Islândia</option>
+                                        <option value="Israel">Israel</option>
+                                        <option value="Itália">Itália</option>
+                                        <option value="Jamaica">Jamaica</option>
+                                        <option value="Japão">Japão</option>
+                                        <option value="Jordânia">Jordânia</option>
+                                        <option value="Kuwait">Kuwait</option>
+                                        <option value="Latvia">Latvia</option>
+                                        <option value="Líbano">Líbano</option>
+                                        <option value="Liechtenstein">Liechtenstein</option>
+                                        <option value="Lituânia">Lituânia</option>
+                                        <option value="Luxemburgo">Luxemburgo</option>
+                                        <option value="Macau">Macau</option>
+                                        <option value="Macedônia">Macedônia</option>
+                                        <option value="Madagascar">Madagascar</option>
+                                        <option value="Malásia">Malásia</option>
+                                        <option value="Malaui">Malaui</option>
+                                        <option value="Mali">Mali</option>
+                                        <option value="Malta">Malta</option>
+                                        <option value="Marrocos">Marrocos</option>
+                                        <option value="Martinica">Martinica</option>
+                                        <option value="Mauritânia">Mauritânia</option>
+                                        <option value="Mauritius">Mauritius</option>
+                                        <option value="México">México</option>
+                                        <option value="Moldova">Moldova</option>
+                                        <option value="Mônaco">Mônaco</option>
+                                        <option value="Montserrat">Montserrat</option>
+                                        <option value="Nepal">Nepal</option>
+                                        <option value="Nicarágua">Nicarágua</option>
+                                        <option value="Niger">Niger</option>
+                                        <option value="Nigéria">Nigéria</option>
+                                        <option value="Noruega">Noruega</option>
+                                        <option value="Nova Caledônia">Nova Caledônia</option>
+                                        <option value="Nova Zelândia">Nova Zelândia</option>
+                                        <option value="Omã">Omã</option>
+                                        <option value="Palau">Palau</option>
+                                        <option value="Panamá">Panamá</option>
+                                        <option value="Papua-nova Guiné">Papua-nova Guiné</option>
+                                        <option value="Paquistão">Paquistão</option>
+                                        <option value="Peru">Peru</option>
+                                        <option value="Polinésia Francesa">Polinésia Francesa</option>
+                                        <option value="Polônia">Polônia</option>
+                                        <option value="Porto Rico">Porto Rico</option>
+                                        <option value="Portugal">Portugal</option>
+                                        <option value="Qatar">Qatar</option>
+                                        <option value="Quênia">Quênia</option>
+                                        <option value="Rep. Dominicana">Rep. Dominicana</option>
+                                        <option value="Rep. Tcheca">Rep. Tcheca</option>
+                                        <option value="Reunion">Reunion</option>
+                                        <option value="Romênia">Romênia</option>
+                                        <option value="Ruanda">Ruanda</option>
+                                        <option value="Rússia">Rússia</option>
+                                        <option value="Saipan">Saipan</option>
+                                        <option value="Samoa Americana">Samoa Americana</option>
+                                        <option value="Senegal">Senegal</option>
+                                        <option value="Serra Leone">Serra Leone</option>
+                                        <option value="Seychelles">Seychelles</option>
+                                        <option value="Singapura">Singapura</option>
+                                        <option value="Síria">Síria</option>
+                                        <option value="Sri Lanka">Sri Lanka</option>
+                                        <option value="St. Kitts & Nevis">St. Kitts & Nevis</option>
+                                        <option value="St. Lúcia">St. Lúcia</option>
+                                        <option value="St. Vincent">St. Vincent</option>
+                                        <option value="Sudão">Sudão</option>
+                                        <option value="Suécia">Suécia</option>
+                                        <option value="Suiça">Suiça</option>
+                                        <option value="Suriname">Suriname</option>
+                                        <option value="Tailândia">Tailândia</option>
+                                        <option value="Taiwan">Taiwan</option>
+                                        <option value="Tanzânia">Tanzânia</option>
+                                        <option value="Togo">Togo</option>
+                                        <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                                        <option value="Tunísia">Tunísia</option>
+                                        <option value="Turquia">Turquia</option>
+                                        <option value="Ucrânia">Ucrânia</option>
+                                        <option value="Uganda">Uganda</option>
+                                        <option value="Uruguai">Uruguai</option>
+                                        <option value="Venezuela">Venezuela</option>
+                                        <option value="Vietnã">Vietnã</option>
+                                        <option value="Zaire">Zaire</option>
+                                        <option value="Zâmbia">Zâmbia</option>
+                                        <option value="Zimbábue">Zimbábue</option>
+                                    </select>
+                                    <small class="form-text text-muted danger"
+                                          *ngIf="!form.get('country').valid && (form.get('country').dirty || form.get('country').touched)">
+                                              Campo obrigatório
+                                    </small>
+                                  </fieldset>
+                                </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              
+              <!-- Carregamento do detalhe do serviço -->
+              <div class="col-md-4 col-xs-12 col-sm-12 col-md-offset-1">
+                <div class="card-service">
+                   <div class="card-service__header">
+                      <div class="card-service__bg" [ngStyle]="{'background-image':'url(' + getImageServicesFeatured(service?.serviceExt?.id, service?.serviceExt?.gallery[0]?.id) + ')'}">
+                          
+                      </div>
+
+                      <div class="card-service__header__title padding--20px">
+                          <h4 class="card-service__title">{{ service?.serviceExt?.name }}</h4>
+                      </div>
+                   </div>
+
+                   <div class="card-info__rating padding--20px">
+                      <span class="card-info__label">{{ service?.totalMessages }} avaliações</span>
+
+                      <div class="card-info__stars">
+                          <i class="fas fa-star icon-green"></i>
+                          <i class="fas fa-star icon-green"></i>
+                          <i class="fas fa-star icon-green"></i>
+                          <i class="fas fa-star icon-green"></i>
+                          <i class="fas fa-star icon-green"></i>
+                      </div>
+                    </div>
+
+                    <div class="card-info__body padding--20px">
+                       <span class="card-info__label--blue">{{ service?.serviceExt?.addressInfo?.city }}, {{ service?.serviceExt?.addressInfo?.state }} - {{ service?.serviceExt?.addressInfo?.country }}</span>
+
+                       <span class="card-info__label--small">Prazo</span>
+
+                      <span class="card-info__label--blue">15 dias</span>
+                    </div>
+
+                    <div class="card-info__price mart-4 padding--20px">
+                       <p class="flex flex-center flex-between">
+                          <span class="card-service__title ft-18">Valor unitário</span>
+                          <span class="card-info__label--small card-info__label--lg">{{ service?.serviceExt?.price | currency: 'BRL': true }}</span>
+                       </p>
+
+                       <p class="flex flex-center flex-between">
+                          <span class="card-service__title ft-18">Quantidade mínima</span>
+                          <span class="card-info__label--small card-info__label--lg">{{ service?.serviceExt?.info?.minimalFootage }}</span>
+                       </p>
+
+                       <p class="flex flex-center flex-between">
+                          <span class="card-service__title ft-18">Visita técnica</span>
+                          <span class="card-info__label--small card-info__label--lg">{{ visitPrice | number | currency: 'BRL': true }} m²</span>
+                       </p>
+                    </div>
+
+                    <div class="qtd-cont padding--20px">
+                        <span class="card-info__label--blue ft-22 card-service__title">Quantidade a contratar</span>
+                        <span class="card-info__label--small card-info__label">Quantidade mínima 100m²</span>
+                    </div>
+                    <div class="card-input">
+                      <input type="text" class="form-control input-bg--gray" placeholder="100m²" formControlName="total" (input)="defPrice()" mask="00000000">
+                    </div>
+                </div>
+
+                <div class="hire-service mart-4">
+                    <span class="card-service__title">Contrate esse serviço por apenas</span>
+                    <p class="card-info__label--blue text-right">{{ total | currency: 'BRL': true }}</p>
+                </div>
+              </div>
+           </div>
+           
+        </form>
+
+        <div class="col-md-10 col-md-offset-1 text-center mart-4" *ngIf="showStepTwo">
+            <button type="button" class="btn btn-round btn-primary btn-lg bg-gray btn-terms">Contrato de prestação de serviços</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section section--gray mart-4">
+      <form [formGroup]="formMessage" [hidden]="!showStepOne">
+      <div class="container">
+        <div class="section__body">
+           <div class="row">
+               <div class="col-md-10 col-md-offset-1">
+                  <div class="mb-3">
+                    <h2 class="h3 title-blue">Envie uma mensagem para o Especialista</h2>
+                  </div>
+               </div>
+    
+               <div class="col-md-10 col-md-offset-1 mart-8">
+                      <div class="message-infouser">
+                          <div class="row flex flex-bottom flex-sm">
+                             <div class="col-md-2 col-xs-12 border-r border-xs-hidde">
+                                <div class="message-infouser__avatar" style="left: 5px;">
+                                   <img class="avatar avatar-t" width="70px" height="70px" *ngIf="imageUser" [src]="imageUser" alt="User avatar">
+                                   <img class="avatar ml-2" style="margin-left: 25px" width="100px" height="100px" src="assets/images/icones/topscored.png" alt="Icon placeholder">
+                                 </div>
+                             </div>
+                             <div class="col-md-6 col-sm-12 col-xs-12">
+                                
+                             <div class="message-infouser__info">
+                                <span class="blockquote h3 block bolder">{{ service?.userCard?.name }}</span>
+                                <!--<span class="text h5 block">Gerente de compras</span>-->
+                                <!--<span class="text h5 block" *ngIf="service.company.fantasyName">{{ service?.company?.fantasyName }}</span>
+                                <span class="text h5 block" *ngIf="!service.company.fantasyName">Não informado</span> -->
+                            </div>
+                             </div>
+                             <div class="col-md-4 col-sm-12 col-xs-12">
+                                <div class="message-option">
+                                    <select class="form-control" formControlName="modelOption" (change)="setModel()">
+                                        <option  value="">Buscar modelo</option>
+                                      <option  *ngFor="let model of listModels" [ngValue]="model">{{ model.title }}</option>
+                                    </select>
+                                  </div>
+                             </div>
+                          </div>
+                       </div>
+               </div>
+               <div class="col-md-10 col-md-offset-1 mart-4 mt-4">
+                  <div class="message mt-3">
+                      <textarea class="form-control mb-4" rows="10" placeholder="Explique as características do projeto" formControlName="model"></textarea>
+                   </div>
+    
+                   <div class="form-action">
+                      <button [disabled]="formMessage.invalid" (click)="faqSave()" class="text-right btn btn-round btn-blue btn-auto mart-4 btn-gray" style="line-height: 1">Enviar mensagem</button>
+                   </div>
+               </div>
+            </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="terms" *ngIf="showStepTwo">
+       <div class="container">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1 mart-4">
+                <div class="section-body">
+                    <div class="terms-info">
+                        {{ service?.company?.info?.hiringRules}}
+                     </div>
+             
+                     <div class="terms-option flex flex-center mart-4">
+                         <input type="checkbox"  id="saveDataCard" formControlName="saveDataCard" style="width: 15px" >
+                         <label for="saveDataCard" class="custom-checkbox"></label>
+                         <label class="label-txt" style="width: 80%">Li e concordo com todas as políticas de prestação de serviços</label>
+                     </div>
+                </div>
+            </div>
+          </div>
+       </div>
+    </div>
+    <div class="form-actions mart-8">
+      <div class="">
+          <div class="text-center flex flex-between container-buttons">
+             <button type="submit" class="btn btn-round btn-primary btn-lg bg-gray"  
+                    *ngIf="showStepOne">Cancelar</button>
+                    <button type="submit" class="btn btn-round btn-primary btn-lg bg-gray" 
+                    (click)="backStepOne()" 
+                    *ngIf="showStepTwo">Anterior</button>
+                    <button type="submit" class="btn btn-round btn-primary btn-lg bg-gray" 
+                    (click)="backStepTwo()" 
+                    *ngIf="showStepThree">Anterior</button>
+          
+            <button type="submit" class="btn btn-round btn-primary btn-lg" 
+                     style="background: #3cafac;" 
+                    (click)="goStepTwo()" *ngIf="showStepOne">Próximo</button> 
+
+           <button type="submit" class="btn btn-round btn-primary btn-lg" 
+                    style="background: #3cafac;" 
+                    (click)="goStepThree()" *ngIf="showStepTwo">Próximo</button>
+
+           <button type="submit" class="btn btn-round btn-primary btn-lg" 
+                    style="background: #3cafac;" 
+                    (click)="save()" *ngIf="showStepThree">Contratar</button> 
+          </div>
+      </div>
+  </div>
+    </div>

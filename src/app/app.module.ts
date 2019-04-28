@@ -10,6 +10,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 //import { HeaderComponent } from './shared/header/header.component';
 import { StorageUtils } from './utils/storage-utils';
 import { SharedModule } from './shared/shared.module';
+import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap';
+//import {MyDatePickerModule} from 'mydatepicker';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     HttpModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    BsDatepickerModule.forRoot(),
+    DatepickerModule.forRoot()
   ],
   providers: [StorageUtils],
   bootstrap: [AppComponent]

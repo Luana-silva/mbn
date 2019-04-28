@@ -1,0 +1,245 @@
+<div class="account">
+    <div class="container">
+      <div class="section__header">
+          <div class="row">
+              <div class="col-md-12 col-md-offset-0">
+                  <h2 class="title-section">Contratação concluída</h2>
+              </div>
+          </div>
+      </div>
+      
+      <div class="">
+          <div class="row">
+            <div class="col-md-11">
+              <div class="section-steps">
+                 <div class="step step-one" #tabStepOne>
+                     <span class="border-step border-step-one border-step--active"></span>
+                     <span class="number-step fill number-step-one number-step--active">1</span>
+                   </div>
+          
+                   <div class="step step-two" #tabStepTwo>
+                    <span class="border-step border-step-two border-step--active"></span>
+                    <span class="number-step fill number-step-two number-step--active">2</span>
+                  </div>
+          
+                  <div class="step step-three" #tabStepThree>
+                    <span class="border-step border-step-three border-step--active"></span>
+                    <span class="number-step fill number-step-three number-step--active">3</span>
+                  </div>
+              </div>
+            </div>
+          </div>
+       </div>
+
+      <div class="section__body">
+        <div class="row padding--20px">
+          <div class="col-md-11 col-md-offset-0">
+              <h2 class="title-section">Seu pedido foi recebido :)</h2>
+          </div>
+          
+          <div class="col-md-11 col-md-offset-0">
+            <p class="blockquote">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur itaque, maxime voluptatibus rem
+               officia laboriosam eligendi et iure ex non! Consequuntur dolor maiores quis 
+              dignissimos, eos odit eligendi cumque. In.
+            </p>
+        </div>
+      </div>
+
+        <div class="row mart-4">
+            <div class="col-md-11 col-md-offset-0">
+                <div class="bg-gray" style="padding: 8px">
+                    <span class="title-section">Pedido #{{ booking?.code }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mart-4">
+          <div class="row padding--20px">
+            <div class="col-md-11 card-service" style="padding-top: 28px; padding-bottom: 28px">
+                <div class="col-md-6 border-r border-xs-hidde">
+                
+                    <div class="card-service__header">
+                        <div class="card-service__header__title padding--20px">
+                            <h4 class="card-service__title ft-28">{{ booking?.nameService }}</h4>
+                        </div>
+                     </div>
+     
+                     <div class="card-info__rating padding--20px">
+                        <span class="card-info__label">80 avaliações</span>
+     
+                        <div class="card-info__stars">
+                            <i class="fas fa-star icon-green"></i>
+                            <i class="fas fa-star icon-green"></i>
+                            <i class="fas fa-star icon-green"></i>
+                            <i class="fas fa-star icon-green"></i>
+                            <i class="fas fa-star icon-green"></i>
+                        </div>
+                      </div>
+     
+                      <div class="card-info__body padding--20px">
+                         <span class="card-info__label--blue">{{ booking?.serviceAddress?.city }}, {{ booking?.serviceAddress?.state }} - {{ booking?.serviceAddress?.country }}</span>
+     
+                         <span class="card-info__label--small">Prazo</span>
+     
+                        <span class="card-info__label--blue">15 dias</span>
+                      </div>
+
+                      <div class="card-info__price mart-4 padding--20px">
+                         
+                             <span class="card-service__title ft-18">Forma de pagamento</span>
+                             <span class="card-info__label--small card-info__label--lg">3x no cartão</span>
+                             <span class="card-info__label--small card-info__label--lg">xxx.xxx.xxx Mastercard</span>
+                          
+                      </div>
+                </div>
+                <div class="col-md-6">
+                    
+                    <div class="card-info__price mart-4 padding--20px">
+                        <p class="flex flex-center flex-between">
+                           <span class="card-service__title ft-18">Valor unitário</span>
+                           <span class="card-info__label--small card-info__label--lg">{{ booking?.unitaryValue | currency: 'BRL': true }}</span>
+                        </p>
+    
+                        <p class="flex flex-center flex-between">
+                           <span class="card-service__title ft-18">Quantidade mínima</span>
+                           <span class="card-info__label--small card-info__label--lg">{{ booking?.minimunQuantity }}</span>
+                        </p>
+    
+                        <p class="flex flex-center flex-between">
+                           <span class="card-service__title ft-18">Visita técnica</span>
+                           <span class="card-info__label--small card-info__label--lg">R$ {{ booking?.visitValue }} m²</span>
+                        </p>
+                     </div>
+    
+                     <div class="qtd-cont padding--20px">
+                         <span class="card-info__label--blue ft-22 card-service__title">Quantidade a contratar</span>
+                         <span class="card-info__label--small card-info__label">Quantidade mínima 100m²</span>
+                     </div>
+                     <div class="card-input">
+                       <input type="text" class="form-control input-bg--gray" placeholder="100m²" [readonly]="true">
+                     </div>
+    
+                     <div class="hire-service mart-4">
+                        <span class="card-service__title">Valor total do serviço</span>
+                        <p class="card-info__label--blue text-right">{{ booking?.total | currency: 'BRL': true }}</p>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section mart-4 section--gray">
+      <div class="container">
+          <div class="row padding--20px">
+              <div class="col-md-11">
+                 <div class="row mart-4">
+                   <div class="col-md-5">
+                      <span class="title-section">Contratante</span>
+      
+                      <div class="flex mart-4">
+                         <div class="avatar-service">
+                           <img class="avatar" width="80px" height="80px" [src]="getUserImage(booking.idUser)">
+                         </div>
+      
+                         <div class="info-service">
+                            <div class="card-info__stars" style="margin-left: 0;">
+                                <i class="fas fa-star icon-green"></i>
+                                <i class="fas fa-star icon-green"></i>
+                                <i class="fas fa-star icon-green"></i>
+                                <i class="fas fa-star icon-green"></i>
+                                <i class="fas fa-star icon-green"></i>
+                            </div>
+      
+                            <div class="info-service__user">
+                                <h4 class="card-service__title">{{ booking.nameUser }}</h4>
+
+                                <span class="card-info__label--small card-info__label">{{ booking.occupationUser }}</span>
+                            </div>
+                         </div>
+                      </div>
+
+                      <div class="flex mart-4">
+                          <div class="avatar-service">
+                            <img class="avatar" width="80px" height="80px" [src]="getCompanyImage(booking.companyUserId)">
+                          </div>
+       
+                          <div class="info-service">
+                             <div class="card-info__stars" style="margin-left: 0;">
+                                 <i class="fas fa-star icon-green"></i>
+                                 <i class="fas fa-star icon-green"></i>
+                                 <i class="fas fa-star icon-green"></i>
+                                 <i class="fas fa-star icon-green"></i>
+                                 <i class="fas fa-star icon-green"></i>
+                             </div>
+       
+                             <div class="info-service__user">
+                                 <h4 class="card-service__title">{{ booking.companyNameUser }}</h4>
+                                 <span class="card-info__label--small card-info__label">CNPJ</span>
+                                 <span class="card-info__label--small card-info__label">{{ booking.companyDocumentUser }}</span>
+                                 <span class="card-info__label--small card-info__label">{{ booking?.companyAddressUser?.street }}</span>
+                                 <span class="card-info__label--small card-info__label">{{ booking?.companyAddressUser?.district }}</span>
+                                 <span class="card-info__label--small card-info__label">{{ booking?.companyAddressUser?.zipCode }}</span>
+                             </div>
+                          </div>
+                       </div>
+                   </div>
+      
+                   <div class="col-md-5 col-md-offset-2">
+                      <span class="title-section">Contratado</span>
+      
+                      <div class="flex mart-4">
+                           <div class="avatar-service">
+                             <img class="avatar" width="80px" height="80px" [src]="getUserImage(booking.idProfessional)">
+                           </div>
+      
+                           <div class="info-service">
+                              <div class="card-info__stars" style="margin-left: 0;">
+                                  <i class="fas fa-star icon-green"></i>
+                                  <i class="fas fa-star icon-green"></i>
+                                  <i class="fas fa-star icon-green"></i>
+                                  <i class="fas fa-star icon-green"></i>
+                                  <i class="fas fa-star icon-green"></i>
+                              </div>
+      
+                              <div class="info-service__user">
+                                  <h4 class="card-service__title">{{ booking.nameProfessional }}</h4>
+
+                                  <span class="card-info__label--small card-info__label">{{ booking.occupationProfessional }}</span>
+                              </div>
+                           </div>
+                      </div>
+
+                      <div class="flex mart-4">
+                          <div class="avatar-service">
+                            <img class="avatar" width="80px" height="80px" [src]="getCompanyImage(booking.companyUserId)">
+                          </div>
+     
+                          <div class="info-service">
+                             <div class="card-info__stars" style="margin-left: 0;">
+                                 <i class="fas fa-star icon-green"></i>
+                                 <i class="fas fa-star icon-green"></i>
+                                 <i class="fas fa-star icon-green"></i>
+                                 <i class="fas fa-star icon-green"></i>
+                                 <i class="fas fa-star icon-green"></i>
+                             </div>
+     
+                             <div class="info-service__user">
+                                 <h4 class="card-service__title">{{ booking?.companyNameProfessional }}</h4>
+                                 <span class="card-info__label--small card-info__label">CNPJ</span>
+                                 <span class="card-info__label--small card-info__label">{{ booking?.companyDocumentProfessional }}</span>
+                                 <span class="card-info__label--small card-info__label">{{ booking?.companyAddressProfessional?.street }}</span>
+                                 <span class="card-info__label--small card-info__label">{{ booking?.companyAddressProfessional?.district }}</span>
+                                 <span class="card-info__label--small card-info__label">{{ booking?.companyAddressProfessional?.zipCode }}</span>
+                             </div>
+                          </div>
+                     </div>
+                   </div>
+                 </div>
+              </div>
+            </div>
+      </div>
+  </div>
